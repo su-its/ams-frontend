@@ -1,8 +1,6 @@
-@import url(https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
-
 html, body, #app {
 	height: 100%;
+	font-family: "メイリオ", Meiryo, sans-serif;
 }
 
 #app {
