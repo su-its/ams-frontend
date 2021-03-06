@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main.css">
-  <script src="./js/websocket.js"></script>
   <title>ITS-AMS コントロールパネル</title>
 </head>
 
@@ -26,7 +25,7 @@
           <p class="menu-label is-hidden-touch">Navigation</p>
           <ul class="menu-list">
             <li>
-              <a href="#" class="is-active">
+              <a href="./index.html" class="">
                 <span class="icon"><i class="fa fa-home"></i></span>　現在の在室状況
               </a>
             </li>
@@ -36,7 +35,7 @@
               </a>
             </li>
             <li>
-              <a href="./about.html" class="">
+              <a href="#" class="is-active">
                 <span class="icon"><i class="fa fa-info"></i></span>　このシステムについて
               </a>
             </li>
@@ -50,7 +49,7 @@
                 <p class="card-header-title">現在在室している人数</p>
               </div>
               <div class="card-content">
-                <div id="user-count" class="content"></div>
+                <div class="content">5人</div>
               </div>
             </div>
             <br />
@@ -60,7 +59,15 @@
                 <p class="card-header-title">現在在室している人</p>
               </div>
               <div class="card-content">
-                <div id="user-list" class="content" />
+                <div class="content">
+                  <ul>
+                    <li>70710022</li>
+                    <li>70710010</li>
+                    <li>70710084</li>
+                    <li>70810084</li>
+                    <li>70810100</li>
+                  </ul>
+                </div>
               </div>
             </div>
             <br />
