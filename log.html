@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/bulma.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <title>ITS-AMS コントロールパネル</title>
+  <title>入退室ログ - ITS-AMS コントロールパネル</title>
 </head>
 
 <body>
@@ -27,17 +27,17 @@
           <p class="menu-label is-hidden-touch">Navigation</p>
           <ul class="menu-list">
             <li>
-              <a href="./index.html" class="">
+              <a href="index.html" class="">
                 <span class="icon"><i class="fa fa-home"></i></span>　現在の在室状況
               </a>
             </li>
             <li>
-              <a href="#" class="is-active">
+              <a href="log.html" class="is-active">
                 <span class="icon"><i class="fa fa-table"></i></span>　入退室ログの表示
               </a>
             </li>
             <li>
-              <a href="./about.html" class="">
+              <a href="about.html" class="">
                 <span class="icon"><i class="fa fa-info"></i></span>　このシステムについて
               </a>
             </li>
@@ -48,31 +48,53 @@
 
             <div class="card">
               <div class="card-header">
-                <p class="card-header-title">現在在室している人数</p>
+                <p class="card-header-title">入退室ログ</p>
               </div>
               <div class="card-content">
-                <div class="content">5人</div>
+
+                <table class="table">
+                  <tr>
+                    <th>学籍番号</th>
+                    <th>登録名</th>
+                    <th>入室時刻</th>
+                    <th>退室時刻</th>
+                  </tr>
+                  <tr>
+                    <td>70013022</td>
+                    <td>田中 太郎</td>
+                    <td>2021/03/07 13:00:00</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>70013001</td>
+                    <td></td>
+                    <td>2021/03/07 11:00:00</td>
+                    <td>2021/03/07 11:45:00</td>
+                  </tr>
+                  <tr>
+                    <td>70013020</td>
+                    <td></td>
+                    <td>2021/03/06 18:00:00</td>
+                    <td>2021/03/06 19:00:00</td>
+                  </tr>
+                </table>
+
               </div>
             </div>
-            <br />
+            <br>
 
             <div class="card">
               <div class="card-header">
-                <p class="card-header-title">現在在室している人</p>
+                <p class="card-header-title">CSV形式でダウンロード</p>
               </div>
               <div class="card-content">
-                <div class="content">
-                  <ul>
-                    <li>70710022</li>
-                    <li>70710010</li>
-                    <li>70710084</li>
-                    <li>70810084</li>
-                    <li>70810100</li>
-                  </ul>
-                </div>
+                <p>直近2ヶ月分の入退室ログをCSV形式でダウンロードできます。</p><br>
+                <p>
+                  <a class="button is-primary"><span class="icon"><i class="fa fa-download"></i></span>　ダウンロード</a>
+                </p>
               </div>
             </div>
-            <br />
+
           </div>
         </div>
         </div>
@@ -83,7 +105,7 @@
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
-          <p>&copy; 2021 静岡大学ITソルーション室 all rights reserved.</p>
+          <p>(c) 2021 IT Solution Room, Shizuoka University</p>
         </div>
       </div>
     </footer>
