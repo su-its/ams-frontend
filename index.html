@@ -52,9 +52,8 @@
               </div>
               <div class="card-content">
                 <div id="user-count" class="content">現在、 {{ users.length }} 人 が在室中です。</div>
-
                 <div class="content">
-                  <div class="card">
+                  <div class="card" v-for="user in users">
                     <div class="card-content">
                       <div class="media">
                         <div class="media-left">
@@ -63,46 +62,13 @@
                           </figure>
                         </div>
                         <div class="media-content">
-                          <p class="title is-4">70013001</p>
-                          <p class="subtitle is-6">70013001</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-4">70013011</p>
-                          <p class="subtitle is-6">70013011</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-content">
-                      <div class="media">
-                        <div class="media-left">
-                          <figure class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png">
-                          </figure>
-                        </div>
-                        <div class="media-content">
-                          <p class="title is-4">田中 太郎</p>
-                          <p class="subtitle is-6">70013022</p>
+                          <p class="title is-4">{{ user.user_name ?? user.user_id }}</p>
+                          <p class="subtitle is-6">{{ user.user_id }}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
             <br>
