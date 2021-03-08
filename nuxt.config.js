@@ -1,6 +1,10 @@
 import colors from 'vuetify/es5/util/colors';
 
+require('dotenv').config();
 export default {
+  server: {
+    port: process.env.APP_PORT
+  },
   mode: "spa",
   head: {
     titleTemplate: "%s - " + process.env.npm_package_name,
@@ -31,11 +35,11 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxt/typescript-build'],
+  buildModules: ['@nuxtjs/vuetify', '@nuxt/typescript-build', '@nuxtjs/dotenv'],
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ["@nuxtjs/axios", "@nuxtjs/moment"],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
