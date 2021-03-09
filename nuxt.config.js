@@ -1,6 +1,6 @@
-import colors from 'vuetify/es5/util/colors'
+import colors from "vuetify/es5/util/colors";
 
-require('dotenv').config()
+require("dotenv").config();
 export default {
   server: {
     port: process.env.APP_PORT
@@ -8,40 +8,40 @@ export default {
   env: process.env.API_URL,
   ssr: false,
   head: {
-    title: 'ITS-AMS コントロールパネル',
+    title: "ITS-AMS コントロールパネル",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'description' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "description" }
     ]
   },
-  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: "#fff" },
   /*
    ** Global CSS
    */
-  css: ['ress'],
+  css: ["ress"],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: undefined }],
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxtjs/vuetify', '@nuxt/typescript-build', '@nuxtjs/dotenv'],
+  buildModules: ["@nuxtjs/vuetify", "@nuxt/typescript-build", "@nuxtjs/dotenv"],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/moment', 'nuxt-buefy', { css: false }],
+  modules: ["@nuxtjs/axios", "@nuxtjs/moment", "nuxt-buefy", { css: false }],
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
-    customVariables: ['~/assets/common.scss'],
+    customVariables: ["~/assets/common.scss"],
     theme: {
       dark: true,
       themes: {
@@ -66,4 +66,4 @@ export default {
      */
     // extend(config, ctx) {}
   }
-}
+};
