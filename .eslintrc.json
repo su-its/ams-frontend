@@ -1,0 +1,22 @@
+{
+    "root": true,
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "extends": [
+        "@nuxtjs/eslint-config-typescript"
+    ],
+    "ignorePatterns":[
+        "dist/"
+    ],
+    "rules": {
+        "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+        "curly": ["error", "all"]
+    }
+}
