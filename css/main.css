@@ -22,7 +22,7 @@ html, body, #app {
 }
 
 .footer {
-	margin-top: -12px;
+	margin-top: 12px;
 }
 
 @media screen and (max-width: 768px) {
