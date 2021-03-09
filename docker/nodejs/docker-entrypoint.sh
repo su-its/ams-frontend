@@ -7,4 +7,4 @@ npm i -g npm@7
 npm install
 
 # 更新し続ける
-npm run dev
+npm run dev_docker
