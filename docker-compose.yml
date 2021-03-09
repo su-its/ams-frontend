@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  
+  # Node.js
+  nodejs:
+   container_name: nodejs
+   build: ./docker/nodejs
+   volumes:
+      - .:/var/www/html
+  
+  # ﾜﾝﾁｬﾝRedis実装するかも？？？
+
+  # docs_CIは要検討
