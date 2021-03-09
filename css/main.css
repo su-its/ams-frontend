@@ -1,6 +1,7 @@
 html, body, #app {
 	height: 100%;
 	font-family: "メイリオ", Meiryo, sans-serif;
+	overflow-x: hidden;
 }
 
 #app {
