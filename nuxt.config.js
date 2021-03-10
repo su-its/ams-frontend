@@ -1,9 +1,15 @@
-require('dotenv').config();
+import webpack from 'webpack'
+
+require('dotenv').config()
 export default {
   server: {
+    // ポート番号を指定
     port: process.env.APP_PORT
   },
+
+  // APIのURLを指定
   env: process.env.API_URL,
+
   // ssr: true ユニバーサルモード(サーバサイドレンダリングあり)
   // ssr: false シングルページアプリケーションモード
   ssr: false,
@@ -24,12 +30,18 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  // データの入出力を全てJSONで行うように設定
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  },
 
   // CSS
   css: [],
 
   // ビルドする前にロードするプラグイン
   plugins: [
+    '~/plugins/vee-validate.ts'
   ],
 
   // コンポーネントを自動で読み込むか
@@ -50,6 +62,12 @@ export default {
   ],
 
   // ビルドの設定
+  // lodashを組み込んでどこからでも呼び出せるようにした
   build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        _: 'lodash'
+      })
+    ]
   }
 }
