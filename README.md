@@ -1,22 +1,31 @@
 # ams-frontend
 
-> API-HTTP_connection_system
+本リポジトリはこのような立ち位置になっています。
 
-## Build Setup
+![APIの立ち位置](docs/PJ_map/AMS_MAP.png)
 
-``` bash
-# install dependencies
-$ npm run install
+---
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+## 関係のあるリポジトリ一覧
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+## 議論したり、作業の優先順位を付けるリポジトリ
 
-# generate static project
-$ npm run generate
-```
+[ams-project](https://github.com/su-its/ams-project)
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+---
+
+## カードリーダ部
+
+[カードリーダ部のブリッジ](https://github.com/su-its/rdr-bridge)
+
+---
+
+## バックエンド部
+
+[AMS_バックエンド](https://github.com/su-its/ams-backend-nodejs)
+
+---
+
+## レスポンスを受け取るリポジトリ
+
+[bou_responder](https://github.com/su-its/bou-responder)
