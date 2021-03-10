@@ -25,7 +25,7 @@ export default {
   },
 
   // CSS
-  css: ["ress"],
+  css: [],
 
   // ビルドする前にロードするプラグイン
   plugins: [
