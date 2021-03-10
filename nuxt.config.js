@@ -37,7 +37,7 @@ export default {
   },
 
   // CSS
-  css: [],
+  css: ['~/assets/common.scss'],
 
   // ビルドする前にロードするプラグイン
   plugins: [
