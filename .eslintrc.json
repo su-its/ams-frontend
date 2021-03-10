@@ -4,16 +4,13 @@
         "es2021": true,
         "node": true
     },
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
     "extends": [
-        "@nuxtjs/eslint-config-typescript"
+        "@nuxtjs/eslint-config-typescript",
+        "plugin:nuxt/recommended"
     ],
     "ignorePatterns":[
-        "dist/"
+        "dist/",
+        "mock/"
     ],
     "rules": {
         "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
