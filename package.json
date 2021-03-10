@@ -43,6 +43,7 @@
     "eslint": "^7.21.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "jest": "^26.6.3",
+    "lodash": "^4.17.21",
     "textlint": "^11.8.2",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-plugin-review": "^0.4.1",
@@ -52,6 +53,7 @@
     "textlint-rule-prh": "^5.3.0",
     "textlint-rule-spellcheck-tech-word": "^5.0.0",
     "ts-jest": "^26.5.3",
+    "vee-validate": "^3.4.5",
     "vue-jest": "^3.0.7"
   }
 }
