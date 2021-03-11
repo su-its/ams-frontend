@@ -1,4 +1,6 @@
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
   font-family: "メイリオ", Meiryo, sans-serif;
   overflow-x: hidden;
@@ -26,7 +28,10 @@ html, body, #app {
 }
 
 .footer {
-  margin-top: 12px;
+  position: absolute !important;
+  width: 100% !important;
+  bottom: 0 !important;
+  overflow: hidden !important;
 }
 
 @media screen and (max-width: 768px) {
