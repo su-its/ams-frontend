@@ -50,7 +50,8 @@ export default {
   // dev時、build時に読み込むモジュール
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build', '@nuxtjs/dotenv'
+    // '@nuxt/typescript-build',
+    '@nuxtjs/dotenv'
   ],
 
   // 一般的なモジュール
