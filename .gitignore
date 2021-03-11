@@ -94,3 +94,6 @@ Textlint
 
 # Redpenの結果を出力するフォルダ
 Redpen
+
+# VScodeでプログラミングする人用のフォルダ
+.vscode
