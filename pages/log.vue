@@ -7,6 +7,14 @@
       <div class="column is-9 section">
         <div>
           <AccessLogCard :log_data="log_data" />
+          <b-pagination
+            v-model="current_page"
+            :total="log_meta"
+            :order="is-centered"
+            :per-page="10"
+            :range-before="3"
+            :range-after="1"
+          />
           <br>
           <!-- CSVでダウンロードする部分 -->
           <div class="card">
@@ -37,12 +45,18 @@ export default {
     navigation,
     accessLogCard
   },
+  data () {
+    return {
+      current_page: 1
+    }
+  },
   fetch ({ store }) {
     store.dispatch('logging/getAccessLogs')
   },
   computed: {
     ...mapGetters({
-      log_data: 'logging/access_logs'
+      log_data: 'logging/access_logs',
+      log_meta: 'logging/access_log_metadata'
     })
   }
 }
