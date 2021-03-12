@@ -7,7 +7,7 @@
     </div>
     <div class="card-content">
       <b-table
-        :data="log_data"
+        :data="logData"
         :hoverable="true"
         :mobile-cards="true"
       >
@@ -44,22 +44,11 @@
 <script>
 export default {
   props: {
-    log_data: {
+    logData: {
       type: Array,
       default () {
         return []
       }
-    }
-  },
-  data () {
-    return {
-      test_data: [
-        {
-          user_id: 1000000,
-          entired_at: '12:00',
-          exit_at: '13:00'
-        }
-      ]
     }
   }
 }
