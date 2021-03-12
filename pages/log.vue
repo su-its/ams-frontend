@@ -53,6 +53,9 @@ export default {
   fetch ({ store }) {
     store.dispatch('logging/getAccessLogs')
   },
+  head: {
+    title: '入退室ログ'
+  },
   computed: {
     ...mapGetters({
       log_data: 'logging/access_logs',

@@ -53,6 +53,9 @@ export default {
   fetch ({ store }) {
     store.dispatch('version/info')
   },
+  head: {
+    title: 'このシステムについて'
+  },
   computed: {
     ...mapGetters({
       API_Version: 'version/apiVersion'

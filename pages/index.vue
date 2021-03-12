@@ -25,6 +25,10 @@ export default {
   fetch ({ store }) {
     store.dispatch('logging/getInRoomUsers')
   },
+  head: {
+    title: 'ITS-AMS コントロールパネル',
+    titleTemplate: ''
+  },
   computed: {
     ...mapGetters({
       room_user: 'logging/in_room_users'
