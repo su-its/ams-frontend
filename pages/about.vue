@@ -16,7 +16,7 @@
             <div class="content">
               <p>
                 Ver.1.0<br>
-                (c) 2021 IT Solution Room, Shizuoka University
+                (c) {{ $moment().locale('ja').format('YYYY') }} IT Solution Room, Shizuoka University
               </p>
             </div>
           </div>
@@ -33,7 +33,7 @@
             <div class="content">
               <p>
                 Ver.{{ API_Version }}<br>
-                (c) 2021 IT Solution Room, Shizuoka University
+                (c) {{ $moment().locale('ja').format('YYYY') }} IT Solution Room, Shizuoka University
               </p>
             </div>
           </div>
@@ -47,16 +47,16 @@
 import { mapGetters } from 'vuex'
 import navigation from '~/components/navigation'
 export default {
-  fetch({ store }) {
+  components: {
+    navigation
+  },
+  fetch ({ store }) {
     store.dispatch('version/info')
   },
   computed: {
     ...mapGetters({
       API_Version: 'version/apiVersion'
     })
-  },
-  components: {
-    navigation
   }
 }
 </script>
