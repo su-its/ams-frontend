@@ -36,7 +36,7 @@
       エラーメッセージ: {{ error.message }}
     </h1>
     <div class="buttons">
-      <b-button size="is-medium" icon-left="home" label="初期ページ" tag="router-link" to="/" />
+      <b-button size="is-medium" icon-left="home" label="初期ページ" tag="NuxtLink" to="/" />
     </div>
   </div>
 </template>
