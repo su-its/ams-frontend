@@ -2,11 +2,11 @@
   <div class="container">
     <div class="columns">
       <div class="column is-3 section">
-        <navigation />
+        <Navigation />
       </div>
       <div class="column is-9 section">
         <div>
-          <inRoomUser :room-user="room_user" />
+          <InRoomUser :room-user="room_user" />
         </div>
       </div>
     </div>
@@ -15,12 +15,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import navigation from '~/components/navigation'
-import inRoomUser from '~/components/inRoomUsers'
+import Navigation from '~/components/Navigation'
+import InRoomUser from '~/components/InRoomUsers'
 export default {
   components: {
-    navigation,
-    inRoomUser
+    Navigation,
+    InRoomUser
   },
   fetch ({ store }) {
     store.dispatch('logging/getInRoomUsers')

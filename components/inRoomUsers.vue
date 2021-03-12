@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import User from '~/components/userInfo'
+import User from '~/components/UserInfo'
 export default {
   components: {
     User

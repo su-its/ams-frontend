@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-3 section">
-        <navigation />
+        <Navigation />
       </div>
       <div class="column is-9 section">
         <!-- フロントエンドのver表記 -->
@@ -45,10 +45,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import navigation from '~/components/navigation'
+import Navigation from '~/components/Navigation'
 export default {
   components: {
-    navigation
+    Navigation
   },
   fetch ({ store }) {
     store.dispatch('version/info')

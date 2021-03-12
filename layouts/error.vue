@@ -2,11 +2,11 @@
   <div class="container">
     <div class="columns">
       <div class="column is-3 section">
-        <navigation />
+        <Navigation />
       </div>
       <div class="column is-9 section">
         <div>
-          <errorCard :error="error" />
+          <ErrorCard :error="error" />
         </div>
       </div>
     </div>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import navigation from '~/components/navigation'
-import errorCard from '~/components/errorCard'
+import Navigation from '~/components/Navigation'
+import ErrorCard from '~/components/ErrorCard'
 export default {
   components: {
-    navigation,
-    errorCard
+    Navigation,
+    ErrorCard
   },
   props: {
     error: {

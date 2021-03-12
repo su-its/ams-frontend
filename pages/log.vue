@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-3 section">
-        <navigation />
+        <Navigation />
       </div>
       <div class="column is-9 section">
         <div>
@@ -38,12 +38,12 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import accessLogCard from '~/components/accessLogCard'
-import navigation from '~/components/navigation'
+import Navigation from '~/components/Navigation'
+import AccessLogCard from '~/components/AccessLogCard'
 export default {
   components: {
-    navigation,
-    accessLogCard
+    Navigation,
+    AccessLogCard
   },
   data () {
     return {
