@@ -65,12 +65,6 @@ export default {
   ],
 
   // ビルドの設定
-  // lodashを組み込んでどこからでも呼び出せるようにした
   build: {
-    plugins: [
-      new webpack.ProvidePlugin({
-        _: 'lodash'
-      })
-    ]
   }
 }
