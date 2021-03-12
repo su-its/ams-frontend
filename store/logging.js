@@ -85,8 +85,8 @@ export const actions = {
    */
   getAccessLogs ({ commit }) {
     return this.$axios.get('/access_logs').then((Response) => {
-      commit('SET_ACCESS_LOGS', Response.data)
-      commit('SET_ACCESS_LOG_METADATA', Response.total_page)
+      commit('SET_ACCESS_LOGS', Response.data.data)
+      commit('SET_ACCESS_LOG_METADATA', Response.data.total_page)
     })
   }
 }
