@@ -10,7 +10,7 @@
         <div id="user-count" class="content">
           現在、 {{ room_user.length }} 人 が在室中です。
         </div>
-        <div v-for="user in room_user" :key="user.id">
+        <div v-for="user in room_user" :key="user.id" class="has-shadow">
           <User :user="user" />
         </div>
       </div>
