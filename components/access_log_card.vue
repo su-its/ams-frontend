@@ -7,7 +7,7 @@
     </div>
     <div class="card-content">
       <b-table
-        :data="_.isEmpty ? test_data : log_data"
+        :data="log_data"
         :hoverable="true"
         :mobile-cards="true"
       >
@@ -18,23 +18,23 @@
           width="50"
           numeric
         >
-          {{ props.user_id }}
+          {{ props.row.user_id }}
         </b-table-column>
         <b-table-column
           v-slot="props"
-          field="entired_at"
+          field="entered_at"
           label="入室時刻"
           width="50"
         >
-          {{ props.entired_at }}
+          {{ props.row.entered_at }}
         </b-table-column>
         <b-table-column
           v-slot="props"
-          field="exit_at"
+          field="exited_at"
           label="退室時刻"
           width="50"
         >
-          {{ props.exit_at }}
+          {{ props.row.exited_at }}
         </b-table-column>
       </b-table>
     </div>
