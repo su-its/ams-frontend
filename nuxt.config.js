@@ -8,7 +8,9 @@ export default {
   },
 
   // APIのURLを指定
-  env: process.env.API_URL,
+  env: {
+    baseUrl: process.env.API_URL
+  },
 
   // ssr: true ユニバーサルモード(サーバサイドレンダリングあり)
   // ssr: false シングルページアプリケーションモード
