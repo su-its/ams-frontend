@@ -1,5 +1,3 @@
-import webpack from 'webpack'
-
 require('dotenv').config()
 export default {
   server: {
@@ -43,7 +41,7 @@ export default {
 
   // ビルドする前にロードするプラグイン
   plugins: [
-    '~/plugins/vee-validate.ts'
+    '~/plugins/lodash.js'
   ],
 
   // コンポーネントを自動で読み込むか
