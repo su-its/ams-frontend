@@ -1,5 +1,5 @@
 export const state = () => ({
-  apiVersion: {}
+  api_version: {}
 })
 
 export const mutations = {
@@ -12,7 +12,7 @@ export const mutations = {
   * @param {*} payLoad
   */
   SET_API_VERSION (state, payLoad) {
-    state.apiVersion = payLoad
+    state.api_version = payLoad
   }
 }
 
@@ -23,7 +23,7 @@ export const getters = {
    * @returns {*}
    */
   apiVersion: (state) => {
-    return state.apiVersion
+    return state.api_version
   }
 }
 
