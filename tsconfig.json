@@ -8,6 +8,10 @@
       "ESNext.AsyncIterable",
       "DOM"
     ],
+    // vee-validateの日本語化のために
+    // 日本語jsonの読み込みを許可した
+    "resolveJsonModule": true,
+
     "esModuleInterop": true,
     "allowJs": true,
     "sourceMap": true,
