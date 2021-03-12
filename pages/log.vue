@@ -6,10 +6,10 @@
       </div>
       <div class="column is-9 section">
         <div>
-          <AccessLogCard :log_data="log_data" />
+          <AccessLogCard :log-data="log_data" />
           <b-pagination
             v-model="current_page"
-            :total="log_meta"
+            :total="log_meta.total_page"
             :order="is-centered"
             :per-page="10"
             :range-before="3"
@@ -38,7 +38,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import accessLogCard from '~/components/access_log_card'
+import accessLogCard from '~/components/accessLogCard'
 import navigation from '~/components/navigation'
 export default {
   components: {
@@ -58,8 +58,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      log_data: 'logging/access_logs',
-      log_meta: 'logging/access_log_metadata'
+      log_data: 'logging/accessLogs',
+      log_meta: 'logging/accessLogMetaData'
     })
   }
 }

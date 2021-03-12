@@ -6,7 +6,7 @@
       </div>
       <div class="column is-9 section">
         <div>
-          <inRoomUser :room_user="room_user" />
+          <inRoomUser :room-user="room_user" />
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import navigation from '~/components/navigation'
-import inRoomUser from '~/components/in_room_user'
+import inRoomUser from '~/components/inRoomUsers'
 export default {
   components: {
     navigation,
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      room_user: 'logging/in_room_users'
+      room_user: 'logging/inRoomUsers'
     })
   }
 }
