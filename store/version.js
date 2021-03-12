@@ -34,7 +34,7 @@ export const actions = {
   info ({ commit }) {
     // 完成したらコメントアウトを外して使ってください
     // return this.$axios.get('info').then((Response) => {
-    //   commit('SET_API_VERSION', Response.data)
+    //   commit('SET_API_VERSION', Response.data.data)
     // })
     commit('SET_API_VERSION', '2.0.1')
   }
