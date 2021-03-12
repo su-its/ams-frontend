@@ -45,7 +45,7 @@ export const getters = {
    * @param state
    * @returns {*}
    */
-  access_logs: (state) => {
+  accessLogs: (state) => {
     return state.access_logs.data
   },
 
@@ -55,7 +55,7 @@ export const getters = {
    * @param state
    * @returns {*}
    */
-  access_log_metadata: (state) => {
+  accessLogMetaData: (state) => {
     return state.access_logs.meta
   },
 
@@ -64,7 +64,7 @@ export const getters = {
    * @param state
    * @returns {*}
    */
-  in_room_users: (state) => {
+  inRoomUsers: (state) => {
     return state.in_room_users
   }
 }
@@ -86,7 +86,7 @@ export const actions = {
   getAccessLogs ({ commit }) {
     return this.$axios.get('/access_logs').then((Response) => {
       commit('SET_ACCESS_LOGS', Response.data.data)
-      commit('SET_ACCESS_LOG_METADATA', Response.data.total_page)
+      commit('SET_ACCESS_LOG_METADATA', Response.data.meta)
     })
   }
 }
