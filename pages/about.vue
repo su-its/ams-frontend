@@ -15,7 +15,7 @@
           <div class="card-content">
             <div class="content">
               <p>
-                Ver.1.0<br>
+                Ver.0.1.0<br>
                 (c) {{ $moment().locale('ja').format('YYYY') }} IT Solution Room, Shizuoka University
               </p>
             </div>
