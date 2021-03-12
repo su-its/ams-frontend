@@ -76,7 +76,7 @@ export const actions = {
    */
   getInRoomUsers ({ commit }) {
     return this.$axios.get('/users_in_room').then((Response) => {
-      commit('SET_IN_ROOM_USERS', Response.data)
+      commit('SET_IN_ROOM_USERS', Response.data.data)
     })
   },
   /**
