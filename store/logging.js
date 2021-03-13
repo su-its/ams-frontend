@@ -94,8 +94,8 @@ export const actions = {
    * @param state
    */
   setUpSSE ({ commit }) {
-    // TODO: baseUrlをnuxt.config.jsから持ってきたい
-    const evtSrc = new EventSource('http://localhost:3000/v1/users_updated_event')
+    const baseUrl = process.env.baseUrl
+    const evtSrc = new EventSource(baseUrl + '/users_updated_event')
 
     evtSrc.addEventListener('usersUpdated', (e) => {
       try {
