@@ -24,6 +24,7 @@ export default {
   },
   fetch ({ store }) {
     store.dispatch('logging/getInRoomUsers')
+    store.dispatch('logging/setUpSSE')
   },
   head: {
     title: 'ITS-AMS コントロールパネル',
@@ -33,9 +34,6 @@ export default {
     ...mapGetters({
       room_user: 'logging/inRoomUsers'
     })
-  },
-  created () {
-    this.$store.dispatch('logging/setUpSSE')
   }
 }
 </script>
