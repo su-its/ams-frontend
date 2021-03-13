@@ -33,6 +33,9 @@ export default {
     ...mapGetters({
       room_user: 'logging/inRoomUsers'
     })
+  },
+  created () {
+    this.$store.dispatch('logging/setUpSSE')
   }
 }
 </script>

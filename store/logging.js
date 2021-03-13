@@ -88,5 +88,22 @@ export const actions = {
       commit('SET_ACCESS_LOGS', Response.data.data)
       commit('SET_ACCESS_LOG_METADATA', Response.data.meta)
     })
+  },
+  /**
+   * バックエンドからのイベント通知に対するリスナーを設定する
+   * @param state
+   */
+  setUpSSE ({ commit }) {
+    // TODO: baseUrlをnuxt.config.jsから持ってきたい
+    const evtSrc = new EventSource('http://localhost:3000/v1/users_updated_event')
+
+    evtSrc.addEventListener('usersUpdated', (e) => {
+      try {
+        const json = JSON.parse(e.data)
+        commit('SET_IN_ROOM_USERS', json.data)
+      } catch (error) {
+        // console.log('error in parse mesg:', error)
+      }
+    })
   }
 }
