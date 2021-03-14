@@ -15,7 +15,6 @@
         </div>
         <div v-else class="has-shadow">
           現在、不在です。
-          <NoContent />
         </div>
       </div>
     </div>
@@ -24,11 +23,9 @@
 
 <script>
 import User from '~/components/UserInfo'
-import NoContent from '~/components/NoContent'
 export default {
   components: {
-    User,
-    NoContent
+    User
   },
   props: {
     roomUser: {
