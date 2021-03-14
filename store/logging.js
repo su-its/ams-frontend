@@ -88,5 +88,34 @@ export const actions = {
       commit('SET_ACCESS_LOGS', Response.data.data)
       commit('SET_ACCESS_LOG_METADATA', Response.data.meta)
     })
+  },
+  /**
+   * バックエンドからのイベント通知に対するリスナーを設定する
+   * @param state
+   */
+  setUpSSE ({ commit }) {
+    const baseUrl = process.env.baseUrl
+    const evtSrc = new EventSource(baseUrl + '/users_updated_event')
+
+    /* eslint-disable no-console */
+
+    // 在室者一覧が更新されたときにバックエンドから来るイベント
+    evtSrc.addEventListener('usersUpdated', (e) => {
+      try {
+        const json = JSON.parse(e.data)
+        commit('SET_IN_ROOM_USERS', json.data)
+      } catch (error) {
+        // commitは失敗しないので、JSONのパース失敗を考える
+        // 失敗するようなJSONを送ってくるバックエンドが悪いので
+        // debugで出しておく
+        console.debug('SSE: JSONパース失敗', error)
+      }
+    })
+
+    // SSE で何らかのエラーが起きたときのイベント
+    evtSrc.addEventListener('error', (_) => {
+      // 自動で再接続されるのでdebugだけ出しておく
+      console.debug('SSE: エラーのため再接続')
+    })
   }
 }

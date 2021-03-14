@@ -24,6 +24,7 @@ export default {
   },
   fetch ({ store }) {
     store.dispatch('logging/getInRoomUsers')
+    store.dispatch('logging/setUpSSE')
   },
   head: {
     title: 'ITS-AMS コントロールパネル',
