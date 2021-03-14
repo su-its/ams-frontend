@@ -42,7 +42,6 @@ export default {
 
   // ビルドする前にロードするプラグイン
   plugins: [
-    '~/plugins/lodash.js'
   ],
 
   // コンポーネントを自動で読み込むか

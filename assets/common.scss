@@ -1,19 +1,7 @@
-html,
-body,
+// 全ての要素がappの中にあるので、全てに適応される
 #app {
-  height: 100%;
-  font-family: "メイリオ", Meiryo, sans-serif;
-  overflow-x: hidden;
-}
-
-#app {
-  min-height: 100%;
   display: flex;
-  flex-direction: column;
-}
-
-.nav {
-  height: 96px;
+  font-family: "メイリオ", Meiryo, sans-serif;
 }
 
 // bulma からパクってきた
@@ -21,23 +9,25 @@ body,
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
 }
 
+// ヘッダに適応
 .header {
   padding: 20px 10px;
 }
 
+// ヘッダとメインコンテンツに適応されてます
 .main-content {
   flex: 1;
+  overflow-y: visible;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 168px;
 }
 
+// buefyのCSSでは厳しかったので、!importantで無理にやってます
 .footer {
-  position: absolute !important;
+  position: fixed !important;
   width: 100% !important;
   bottom: 0 !important;
-  overflow: hidden !important;
-}
-
-@media screen and (max-width: 768px) {
-  #menu-toggle:checked + .nav-menu {
-    display: block;
-  }
+  height:168px !important;
+  z-index: 100;
 }
