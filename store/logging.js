@@ -84,7 +84,7 @@ export const actions = {
    * @param {*} params 送られてきたデータを元にAPIに10件データを受信する
    */
   getAccessLogs ({ commit }, params) {
-    return this.$axios.get('/access_logs' + '?page=' + params.page).then((Response) => {
+    return this.$axios.get('/access_logs' + '?page=' + params).then((Response) => {
       commit('SET_ACCESS_LOGS', Response.data.data)
       commit('SET_ACCESS_LOG_METADATA', Response.data.meta)
     })
