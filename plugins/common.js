@@ -22,7 +22,7 @@ export default {
      * @param {Object} form formデータ
      * @returns {*} 変数化されて帰ってきます。主にstoreのactions向けに使います。
      */
-    vonvertDaraToParams (form) {
+    convertDaraToParams (form) {
       const data = _.cloneDeep(form)
       return _.pickBy(
         _.transform(data, function (result, value, key) {
