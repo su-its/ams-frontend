@@ -6,16 +6,18 @@
       </div>
       <div class="column is-9 section">
         <div>
-          <AccessLogCard :log-data="log_data" />
-          <b-pagination
-            v-model="current_page"
-            :total="log_meta.total_page*10"
-            order="is-centered"
-            :per-page="10"
-            :range-before="3"
-            :range-after="1"
-            @change="pagination"
-          />
+          <div class="card">
+            <AccessLogCard :log-data="log_data" />
+            <b-pagination
+              v-model="current_page"
+              :total="log_meta.total_page*10"
+              order="is-centered"
+              :per-page="10"
+              :range-before="3"
+              :range-after="1"
+              @change="pagination"
+            />
+          </div>
           <br>
           <!-- CSVでダウンロードする部分 -->
           <div class="card">
