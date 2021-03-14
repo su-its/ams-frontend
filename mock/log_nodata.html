@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <title>入退室ログ - ITS-AMS コントロールパネル</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <nav class="nav has-shadow">
+      <div class="container header">
+        <img src="img/logo.png">
+      </div>
+    </nav>
+
+    <section class="main-content">
+      <div class="container">
+        <div class="columns">
+        <div class="column is-3 is-narrow-mobile is-fullheight section">
+          <p class="menu-label">Navigation</p>
+          <ul class="menu-list">
+            <li>
+              <a href="index.html" class="">
+                <span class="icon"><i class="fa fa-home"></i></span>　現在の在室状況
+              </a>
+            </li>
+            <li>
+              <a href="log.html" class="is-active">
+                <span class="icon"><i class="fa fa-table"></i></span>　入退室ログの表示
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="">
+                <span class="icon"><i class="fa fa-info"></i></span>　このシステムについて
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="column is-9">
+          <div class="section">
+
+            <div class="card">
+              <div class="card-header">
+                <p class="card-header-title">入退室ログ</p>
+              </div>
+              <div class="card-content">
+                
+        <article class="message is-large">
+          <div class="message-body">
+          データがありません
+          </div>
+        </article>
+                
+
+        
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+          <a class="pagination-previous button"><span class="icon"><i class="fa fa-arrow-circle-o-left"></i></span>　前のページ</a>
+          <a class="pagination-next button">次のページ　<span class="icon"><i class="fa fa-arrow-circle-o-right"></i></span></a>
+          <ul class="pagination-list">
+            1 / 1 ページ
+          </ul>
+        </nav>
+                
+              </div>
+            </div>
+            <br>
+
+            <div class="card">
+              <div class="card-header">
+                <p class="card-header-title">CSV形式でダウンロード</p>
+              </div>
+              <div class="card-content">
+                <p>直近2ヶ月分の入退室ログをCSV形式でダウンロードできます。</p><br>
+                <p>
+                  <a class="button is-primary"><span class="icon"><i class="fa fa-download"></i></span>　ダウンロード</a>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>(c) 2021 IT Solution Room, Shizuoka University</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+
+</html>
