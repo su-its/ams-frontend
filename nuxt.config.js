@@ -60,7 +60,10 @@ export default {
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy'
   ],
-
+  moment: {
+    // momentで日本である事を書く必要がなくなった
+    locales: ['ja']
+  },
   // ビルドの設定
   build: {
   }
