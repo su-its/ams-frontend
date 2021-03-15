@@ -22,6 +22,7 @@
               icon-left="file-download"
               label="ダウンロード"
               type="is-success"
+              @click="download()"
             />
           </p>
         </b-tab-item>
@@ -86,6 +87,7 @@
             icon-left="file-download"
             label="ダウンロード"
             type="is-primary"
+            @click="download()"
           />
         </b-tab-item>
       </b-tabs>
@@ -100,6 +102,11 @@ export default {
       start_date: null,
       end_date: null,
       activeTab: 0
+    }
+  },
+  methods: {
+    download () {
+       this.$buefy.snackbar.open(`ダウンロードしました。`)
     }
   }
 }
