@@ -45,6 +45,15 @@ export default {
         page = 1
       }
       return page
+    },
+
+    /**
+     * CSVをダウンロードするメソッド
+     * @param {*} data 空or取得する期間
+     * @returns {*} CSVデータ
+    */
+    download () {
+      this.$buefy.snackbar.open(`ダウンロードしました。`)
     }
   }
 }
