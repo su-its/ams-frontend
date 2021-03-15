@@ -10,9 +10,9 @@
             <AccessLogCard :log-data="log_data" />
             <b-pagination
               v-model="current_page"
-              :total="log_meta.total_page*10"
+              :total="log_meta.total"
               order="is-centered"
-              :per-page="10"
+              :per-page="log_meta.contains"
               :range-before="3"
               :range-after="1"
               @change="pagination"
