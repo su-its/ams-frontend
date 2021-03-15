@@ -49,7 +49,7 @@ import nuxtend from 'nuxtend'
 import CommonMixin from '~/plugins/common'
 import Navigation from '~/components/Common/Navigation'
 import AccessLogCard from '~/components/AccessLogCard'
-import CSVDownload from '~/components/CSVDownload'
+import CSVDownload from '~/components/CSV/CSVDownload'
 export default nuxtend({
   components: {
     Navigation,
