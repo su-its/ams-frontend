@@ -2,6 +2,7 @@
   <b-menu>
     <b-menu-list label="Navigation">
       <b-menu-item
+      class="menu-items"
         icon="home-circle"
         label="現在の在室状況"
         :active="isActiveRoutePage"
@@ -9,6 +10,7 @@
         to="/"
       />
       <b-menu-item
+        class="menu-items"
         icon="table-large"
         label="入退室ログの表示"
         :active="isActiveLogPage"
@@ -16,6 +18,7 @@
         to="/log"
       />
       <b-menu-item
+        class="menu-items"
         icon="information"
         label="このシステムについて"
         :active="isActiveInfoPage"
