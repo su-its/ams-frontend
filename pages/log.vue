@@ -9,6 +9,23 @@
           <CSVDownload />
           <br>
           <div class="card">
+            <div class="card-header">
+              <p class="card-header-title">
+                入退室ログ
+              </p>
+              <b-dropdown aria-role="list">
+                <template #trigger="{ active }">
+                  <b-button
+                    :label="'表示件数: ' + log_meta.contains"
+                    type="is-success is-light"
+                    :icon-right="active ? 'menu-up' : 'menu-down'"
+                  />
+                </template>
+                <div v-for="i in per_page" :key="i.value">
+                  <b-dropdown-item aria-role="listitem">{{ i.label }}</b-dropdown-item>
+                </div>
+              </b-dropdown>
+            </div>
             <AccessLogCard :log-data="log_data" />
             <b-pagination
               v-model="current_page"
@@ -42,7 +59,13 @@ export default nuxtend({
   mixins: [CommonMixin],
   data () {
     return {
-      current_page: 1
+      current_page: 1,
+      per_page: [
+        {label: 5, value: 5},
+        {label: 10, value: 10},
+        {label: 15, value: 15},
+        {label: 20, value: 20}
+        ]
     }
   },
   fetch ({ store, query }) {

@@ -1,10 +1,5 @@
 <template>
   <div>
-    <div class="card-header">
-      <p class="card-header-title">
-        入退室ログ
-      </p>
-    </div>
     <div class="card-content">
       <div v-if="logData.length != 0">
         <b-table
