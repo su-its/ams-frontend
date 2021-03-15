@@ -7,7 +7,7 @@
         icon-left="file-download"
         label="ダウンロード"
         type="is-success"
-        @click="localDownload()"
+        @click="getCSV()"
       />
     </p>
   </div>
@@ -19,7 +19,7 @@ import nuxtend from 'nuxtend'
 export default nuxtend({
   mixins:[common],
   methods: {
-    localDownload () {
+    getCSV () {
       this.download()
     }
   },
