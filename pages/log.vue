@@ -43,7 +43,7 @@
 import { mapGetters } from 'vuex'
 import nuxtend from 'nuxtend'
 import CommonMixin from '~/plugins/common'
-import Navigation from '~/components/Navigation'
+import Navigation from '~/components/Common/Navigation'
 import AccessLogCard from '~/components/AccessLogCard'
 export default nuxtend({
   components: {

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import NoContent from '~/components/NoContent'
+import NoContent from '~/components/Common/NoContent'
 export default {
   components: {
     NoContent
