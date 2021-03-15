@@ -86,7 +86,7 @@
             size="is-medium"
             icon-left="file-download"
             label="ダウンロード"
-            type="is-primary"
+            type="is-info"
             @click="download()"
           />
         </b-tab-item>
