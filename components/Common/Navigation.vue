@@ -2,7 +2,7 @@
   <b-menu>
     <b-menu-list label="Navigation">
       <b-menu-item
-      class="menu-items"
+        class="menu-items"
         icon="home-circle"
         label="現在の在室状況"
         :active="isActiveRoutePage"
