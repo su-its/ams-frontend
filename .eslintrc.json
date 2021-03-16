@@ -9,6 +9,7 @@
     "extends": [
         "plugin:nuxt/recommended"
     ],
+    "plugins": [ "vue", "js" ],
     "ignorePatterns":[
         "dist/",
         "mock/"
