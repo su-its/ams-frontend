@@ -52,6 +52,7 @@
         </b-datepicker>
       </b-field>
     </b-field>
+    <br>
     <b-button
       size="is-medium"
       icon-left="file-download"
