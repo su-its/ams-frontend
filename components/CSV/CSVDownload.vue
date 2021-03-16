@@ -15,13 +15,13 @@
           label="2か月分"
           icon="file-download"
         >
-        <DefaultCSV />
+          <DefaultCSV />
         </b-tab-item>
         <b-tab-item
           label="自分で設定する"
           icon="download-multiple"
         >
-        <CustomCSV />
+          <CustomCSV />
         </b-tab-item>
       </b-tabs>
     </div>
@@ -36,14 +36,9 @@ export default {
     DefaultCSV,
     CustomCSV
   },
-  data() {
+  data () {
     return {
       activeTab: 0
-    }
-  },
-  methods: {
-    download () {
-       this.$buefy.snackbar.open(`ダウンロードしました。`)
     }
   }
 }
