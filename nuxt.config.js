@@ -1,4 +1,3 @@
-require('dotenv').config()
 export default {
   server: {
     // ポート番号を指定
