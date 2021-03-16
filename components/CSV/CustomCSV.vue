@@ -12,7 +12,6 @@
           icon="calendar-today"
           :append-to-body="true"
         >
-
           <b-button
             label="クリア"
             type="is-danger"
@@ -20,7 +19,6 @@
             outlined
             @click="start_date = null"
           />
-
         </b-datepicker>
       </b-field>
       <b-field
@@ -64,43 +62,40 @@
 </template>
 
 <script>
-import common from '~/plugins/common'
 import nuxtend from 'nuxtend'
+import common from '~/plugins/common'
 export default nuxtend({
-  mixins:[common],
-  data() {
+  mixins: [common],
+  data () {
     return {
       start_date: null,
-      end_date: null,
+      end_date: null
     }
   },
   methods: {
     getCSV () {
-      if(!this.$moment(this.start_date).isValid()) {
+      if (!this.$moment(this.start_date).isValid()) {
         this.$buefy.snackbar.open({
           message: '開始日を設定してください',
           type: 'is-warning',
           position: 'is-top',
         })
-      }
-      else if(!this.$moment(this.end_date).isValid()) {
+      } else if (!this.$moment(this.end_date).isValid()) {
         this.$buefy.snackbar.open({
           message: '終了日を設定してください',
           type: 'is-warning',
           position: 'is-top',
         })
-      }
-      else if(this.$moment(this.start_date) > this.$moment(this.end_date)) {
+      } else if (this.$moment(this.start_date) > this.$moment(this.end_date)) {
         this.$buefy.snackbar.open({
           message: '開始日は必ず終了日より前に設定してください',
           type: 'is-warning',
           position: 'is-top',
         })
-      }
-      else {
+      } else {
         this.download()
       }
     }
-  },
+  }
 })
 </script>
