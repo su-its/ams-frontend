@@ -14,12 +14,12 @@
               animation="slide"
               v-model="isOpenLog"
             > -->
-              <!-- <template #trigger> -->
-                <div class="card-header">
-                  <p class="card-header-title">
-                    入退室ログ
-                    <!-- <b-icon size="is-medium" :icon="isOpenLog ? 'menu-down' : 'menu-up'" /> -->
-                  </p>
+            <!-- <template #trigger> -->
+            <div class="card-header">
+              <p class="card-header-title">
+                入退室ログ
+                <!-- <b-icon size="is-medium" :icon="isOpenLog ? 'menu-down' : 'menu-up'" /> -->
+              </p>
               <b-dropdown aria-role="list">
                 <template #trigger="{ active }">
                   <b-button
@@ -35,7 +35,9 @@
                   <b-dropdown-item
                     aria-role="listitem"
                     @click="changePerPagePagination(i.value)"
-                  >{{ i.label }}</b-dropdown-item>
+                  >
+                    {{ i.value }}
+                  </b-dropdown-item>
                 </div>
               </b-dropdown>
             </div>
@@ -51,14 +53,15 @@
               @change="pagination"
             />
             <!-- </b-collapse> -->
+          </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
 </template>
 
 <script>
+import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import nuxtend from 'nuxtend'
 import CommonMixin from '~/plugins/common'
@@ -77,25 +80,30 @@ export default nuxtend({
       current_page: 1,
       isOpenLog: true,
       per_page: [
-        { label: 5, value: 5 },
-        { label: 10, value: 10 },
-        { label: 15, value: 15 },
-        { label: 20, value: 20 },
+        { value: 5 },
+        { value: 10 },
+        { value: 15 },
+        { value: 20 }
       ]
     }
   },
-  fetch({ store, query }) {
+  asyncData ({ store, query }) {
     // page情報のヴァリデーション
     const page = this.checkNullPageData(query.page)
-    store.dispatch('logging/getAccessLogs', { page: page })
+    return Promise.all([
+      store.dispatch('logging/getAccessLogs', { page })
+    ]).then(() => {
+      return {
+        log_meta: _.cloneDeep(store.getters['logging/accessLogMetaData'])
+      }
+    })
   },
   head: {
     title: '入退室ログ'
   },
   computed: {
     ...mapGetters({
-      log_data: 'logging/accessLogs',
-      log_meta: 'logging/accessLogMetaData'
+      log_data: 'logging/accessLogs'
     })
   },
   methods: {
@@ -104,9 +112,9 @@ export default nuxtend({
      * @returns {*} vuexが書き換わっているけど、一ページ目に遷移する
      * (じゃないと参照したい情報が正しく表示されない)
      */
-    changePerPagePagination (perPage) {
+    async changePerPagePagination (perPage) {
       // パラメータ用のObjectを用意
-      let params = {}
+      const params = {}
       // ページは強制的に1ページ目
       const page = 1
       // ページ情報を代入
@@ -114,7 +122,10 @@ export default nuxtend({
       // perPageを代入
       params.perPage = perPage
       // データのフェッチ
-      this.$store.dispatch('logging/getAccessLogs', params)
+      await this.$store.dispatch('logging/getAccessLogs', params)
+      // meta情報を更新
+      this.log_meta = _.cloneDeep(this.$store.getters['logging/accessLogMetaData'])
+      // 1ページ目に遷移
       this.current_page = 1
     },
     /**
@@ -123,7 +134,7 @@ export default nuxtend({
      */
     pagination () {
       // パラメータ用のObjectを用意
-      let params = {}
+      const params = {}
       // page情報のヴァリデーション
       const page = this.checkNullPageData(this.current_page)
       // ページ情報を代入
