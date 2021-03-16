@@ -83,8 +83,8 @@ export const actions = {
    * 現在入室している生徒の一覧を取得する
    * @param {*} params 送られてきたデータを元にAPIに10件データを受信する
    */
-  getAccessLogs ({ commit }, params) {
-    return this.$axios.get('/access_logs' + '?page=' + params).then((Response) => {
+  getAccessLogs({ commit }, params) {
+    return this.$axios.get('/access_logs' + '?page=' + params.page + '&per_page=' + params.perPage).then((Response) => {
       commit('SET_ACCESS_LOGS', Response.data.data)
       commit('SET_ACCESS_LOG_METADATA', Response.data.meta)
     })
