@@ -16,6 +16,9 @@ export default {
 
   // ページヘッダ
   head: {
+    htmlAttrs: {
+      lang: 'ja'
+    },
     title: 'ITS-AMS コントロールパネル',
     titleTemplate: '%s - ITS-AMS コントロールパネル',
     htmlAttrs: {
