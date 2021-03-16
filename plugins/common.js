@@ -53,7 +53,7 @@ export default {
      * @returns {*} CSVデータ
     */
     download () {
-      this.$buefy.snackbar.open(`ダウンロードしました。`)
+      this.$buefy.snackbar.open('ダウンロードしました。')
     }
   }
 }
