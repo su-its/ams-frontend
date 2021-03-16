@@ -38,8 +38,6 @@ export default {
   },
   data() {
     return {
-      start_date: null,
-      end_date: null,
       activeTab: 0
     }
   },

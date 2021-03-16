@@ -67,6 +67,12 @@ import common from '~/plugins/common'
 import nuxtend from 'nuxtend'
 export default nuxtend({
   mixins:[common],
+  data() {
+    return {
+      start_date: null,
+      end_date: null,
+    }
+  },
   methods: {
     getCSV () {
       this.download()
