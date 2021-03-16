@@ -9,10 +9,17 @@
           <CSVDownload />
           <br>
           <div class="card">
-            <div class="card-header">
-              <p class="card-header-title">
-                入退室ログ
-              </p>
+            <!-- <b-collapse
+              class="panel"
+              animation="slide"
+              v-model="isOpenLog"
+            > -->
+              <!-- <template #trigger> -->
+                <div class="card-header">
+                  <p class="card-header-title">
+                    入退室ログ
+                    <!-- <b-icon size="is-medium" :icon="isOpenLog ? 'menu-down' : 'menu-up'" /> -->
+                  </p>
               <b-dropdown aria-role="list">
                 <template #trigger="{ active }">
                   <b-button
@@ -21,11 +28,18 @@
                     :icon-right="active ? 'menu-up' : 'menu-down'"
                   />
                 </template>
-                <div v-for="i in per_page" :key="i.value">
-                  <b-dropdown-item aria-role="listitem" @click="changePerPagePagination(i.value)">{{ i.label }}</b-dropdown-item>
+                <div
+                  v-for="i in per_page"
+                  :key="i.value"
+                >
+                  <b-dropdown-item
+                    aria-role="listitem"
+                    @click="changePerPagePagination(i.value)"
+                  >{{ i.label }}</b-dropdown-item>
                 </div>
               </b-dropdown>
             </div>
+            <!-- </template> -->
             <AccessLogCard :log-data="log_data" />
             <b-pagination
               v-model="current_page"
@@ -36,10 +50,11 @@
               :range-after="1"
               @change="pagination"
             />
-          </div>
+            <!-- </b-collapse> -->
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -60,18 +75,19 @@ export default nuxtend({
   data () {
     return {
       current_page: 1,
+      isOpenLog: true,
       per_page: [
-        {label: 5, value: 5},
-        {label: 10, value: 10},
-        {label: 15, value: 15},
-        {label: 20, value: 20}
-        ]
+        { label: 5, value: 5 },
+        { label: 10, value: 10 },
+        { label: 15, value: 15 },
+        { label: 20, value: 20 },
+      ]
     }
   },
-  fetch ({ store, query }) {
+  fetch({ store, query }) {
     // page情報のヴァリデーション
     const page = this.checkNullPageData(query.page)
-    store.dispatch('logging/getAccessLogs', {page: page})
+    store.dispatch('logging/getAccessLogs', { page: page })
   },
   head: {
     title: '入退室ログ'
@@ -87,7 +103,7 @@ export default nuxtend({
      * @param {Number} 切り替えたいper_page
      * @returns {*} vuexが書き換わっているけど、一ページ目に遷移する
      * (じゃないと参照したい情報が正しく表示されない)
-    */
+     */
     changePerPagePagination (perPage) {
       // パラメータ用のObjectを用意
       let params = {}
@@ -104,7 +120,7 @@ export default nuxtend({
     /**
      * @param null
      * @returns {*} vuexが書き換わっている
-    */
+     */
     pagination () {
       // パラメータ用のObjectを用意
       let params = {}
