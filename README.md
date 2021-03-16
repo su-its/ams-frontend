@@ -14,9 +14,9 @@
 
 ---
 
-## カードリーダ部
+## カードリーダー部
 
-[カードリーダ部のブリッジ](https://github.com/su-its/rdr-bridge)
+[カードリーダー部のブリッジ](https://github.com/su-its/rdr-bridge)
 
 ---
 
