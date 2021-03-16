@@ -7,10 +7,9 @@
     "node": true
   },
   "parserOptions": {
-    "parser": "babel-eslint"
+    "parser": "@babel/eslint-parser"
   },
-  "extends": ["plugin:nuxt/recommended"],
-  "plugins": ["vue", "js"],
+  "extends": ["plugin:nuxt/recommended", "@nuxtjs"],
   "ignorePatterns": ["dist/", "mock/"],
   "rules": {
     "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
