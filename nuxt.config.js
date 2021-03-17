@@ -1,4 +1,3 @@
-require('dotenv').config()
 export default {
   server: {
     // ポート番号を指定
@@ -50,7 +49,6 @@ export default {
   // dev時、build時に読み込むモジュール
   buildModules: [
     // https://go.nuxtjs.dev/typescript
-    // '@nuxt/typescript-build',
     '@nuxtjs/dotenv'
   ],
 
@@ -61,7 +59,10 @@ export default {
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy'
   ],
-
+  moment: {
+    // momentで日本である事を書く必要がなくなった
+    locales: ['ja']
+  },
   // ビルドの設定
   build: {
   }

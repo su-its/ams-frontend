@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Navigation from '~/components/Navigation'
-import ErrorCard from '~/components/ErrorCard'
+import Navigation from '~/components/Common/Navigation'
+import ErrorCard from '~/components/Common/ErrorCard'
 export default {
   components: {
     Navigation,

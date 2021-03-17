@@ -15,7 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Navigation from '~/components/Navigation'
+import Navigation from '~/components/Common/Navigation'
 import InRoomUser from '~/components/InRoomUsers'
 export default {
   components: {
