@@ -14,15 +14,14 @@
 </template>
 
 <script>
-import common from '~/plugins/common'
 import nuxtend from 'nuxtend'
+import common from '~/plugins/common'
 export default nuxtend({
-  mixins:[common],
+  mixins: [common],
   methods: {
     getCSV () {
       this.download()
     }
-  },
+  }
 })
 </script>
-
