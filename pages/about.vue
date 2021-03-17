@@ -16,7 +16,7 @@
             <div class="content">
               <p>
                 Ver.0.1.0<br>
-                (c) {{ $moment().format('YYYY') }} IT Solution Room, Shizuoka University
+                (c) 2021 IT Solution Room, Shizuoka University
               </p>
             </div>
           </div>
@@ -33,7 +33,7 @@
             <div class="content">
               <p>
                 Ver.{{ API_Version }}<br>
-                (c) {{ $moment().format('YYYY') }} IT Solution Room, Shizuoka University
+                (c) 2021 IT Solution Room, Shizuoka University
               </p>
             </div>
           </div>
