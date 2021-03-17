@@ -12,6 +12,7 @@ jobs:
       - name: eslint
         uses: reviewdog/action-eslint@v1
         with:
-          eslint_flags: '. --ext .js,.ts'
+          eslint_flags: '. --ext .js,.ts,.vue'
           fail_on_error: true
+          level: info
           reporter: github-pr-review
