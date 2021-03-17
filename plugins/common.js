@@ -52,7 +52,7 @@ export default {
      * @param {*} data 空or取得する期間
      * @returns {*} CSVデータ
     */
-    //TODO:CSVをダウンロードする機能をつけること、また引数も持たせないといけないけど、必須ではないので後回しにしてます
+    // TODO:CSVをダウンロードする機能をつけること、また引数も持たせないといけないけど、必須ではないので後回しにしてます
     download () {
       this.$buefy.snackbar.open('ダウンロードしました。')
     }
