@@ -65,5 +65,6 @@ export default {
   },
   // ビルドの設定
   build: {
-  }
+  },
+  telemetry: false
 }
