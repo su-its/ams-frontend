@@ -74,26 +74,28 @@ export default nuxtend({
   },
   methods: {
     getCSV () {
-      if (!this.$moment(this.start_date).isValid()) {
+      const startDate = this.$moment(this.start_date)
+      const endDate = this.$moment(this.end_date)
+      if (!startDate.isValid()) {
         this.$buefy.snackbar.open({
           message: '開始日を設定してください',
           type: 'is-warning',
           position: 'is-top'
         })
-      } else if (!this.$moment(this.end_date).isValid()) {
+      } else if (!endDate.isValid()) {
         this.$buefy.snackbar.open({
           message: '終了日を設定してください',
           type: 'is-warning',
           position: 'is-top'
         })
-      } else if (this.$moment(this.start_date) > this.$moment(this.end_date)) {
+      } else if (startDate > endDate) {
         this.$buefy.snackbar.open({
           message: '開始日は必ず終了日より前に設定してください',
           type: 'is-warning',
           position: 'is-top'
         })
       } else {
-        this.download()
+        this.download(startDate, endDate)
       }
     }
   }
