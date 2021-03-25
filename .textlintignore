@@ -1,0 +1,5 @@
+# localでCIするとき用
+.nuxt/**
+
+# localでCIするとき用
+node_modules/**
