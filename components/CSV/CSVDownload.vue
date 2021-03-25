@@ -12,7 +12,7 @@
         expanded
       >
         <b-tab-item
-          label="2か月分"
+          label="3か月分"
           icon="file-download"
         >
           <DefaultCSV />

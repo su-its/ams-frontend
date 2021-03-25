@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>直近2ヶ月分の入退室ログをCSV形式でダウンロードできます。</p><br>
+    <p>直近3ヶ月分（90日）の入退室ログをCSV形式でダウンロードできます。</p><br>
     <p>
       <b-button
         size="is-medium"
@@ -20,6 +20,7 @@ export default nuxtend({
   mixins: [common],
   methods: {
     getCSV () {
+      // バックエンドのデフォルトの期間指定に任せる
       this.download()
     }
   }
