@@ -25,3 +25,12 @@
   flex: 1;
 }
 
+// Bulmaのprimaryカラー
+$turquoise: hsl(171, 100%, 41%);
+.menu-list a.is-active {
+  background-color: $turquoise;
+}
+
+.menu-list a:not(.is-active):hover {
+  color: $turquoise;
+}
