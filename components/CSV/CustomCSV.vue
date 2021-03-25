@@ -6,18 +6,20 @@
         expanded
       >
         <b-datepicker
-          v-model="start_date"
+          v-model="startDate"
           locale="ja-JP"
           placeholder="集計開始日を指定してください"
           icon="calendar-today"
           :append-to-body="true"
+          :min-date="minDate"
+          :max-date="maxDate"
         >
           <b-button
             label="クリア"
             type="is-danger"
             icon-left="close"
             outlined
-            @click="start_date = null"
+            @click="startDate = null"
           />
         </b-datepicker>
       </b-field>
@@ -26,18 +28,20 @@
         expanded
       >
         <b-datepicker
-          v-model="end_date"
+          v-model="endDate"
           locale="ja-JP"
           placeholder="集計終了日を指定してください"
           icon="calendar-today"
           :append-to-body="true"
+          :min-date="minDate"
+          :max-date="maxDate"
           aria-expanded
         >
           <b-button
             label="本日"
             type="is-primary"
             icon-left="calendar-today"
-            @click="end_date=new Date()"
+            @click="endDate=new Date()"
           />
 
           <b-button
@@ -45,7 +49,7 @@
             type="is-danger"
             icon-left="close"
             outlined
-            @click="end_date = null"
+            @click="endDate = null"
           />
         </b-datepicker>
       </b-field>
@@ -68,14 +72,17 @@ export default nuxtend({
   mixins: [common],
   data () {
     return {
-      start_date: null,
-      end_date: null
+      startDate: null,
+      endDate: null,
+      // CSVのファイル名が年2桁なのでambiguousにならないようにしておく
+      minDate: new Date('2000-01-01'),
+      maxDate: new Date('2099-12-31')
     }
   },
   methods: {
     getCSV () {
-      const startDate = this.$moment(this.start_date)
-      const endDate = this.$moment(this.end_date)
+      const startDate = this.$moment(this.startDate)
+      const endDate = this.$moment(this.endDate)
       if (!startDate.isValid()) {
         this.$buefy.snackbar.open({
           message: '開始日を設定してください',
