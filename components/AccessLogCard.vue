@@ -22,7 +22,7 @@
             label="入室時刻"
             width="50"
           >
-            {{ props.row.entered_at }}
+            {{ $moment(props.row.entered_at).format('YYYY-MM-DD HH:mm:ss') }}
           </b-table-column>
           <b-table-column
             v-slot="props"
@@ -30,7 +30,7 @@
             label="退室時刻"
             width="50"
           >
-            {{ props.row.exited_at }}
+            {{ $moment(props.row.exited_at).format('YYYY-MM-DD HH:mm:ss') }}
           </b-table-column>
         </b-table>
       </div>
