@@ -6,7 +6,7 @@
         size="is-medium"
         icon-left="file-download"
         label="ダウンロード"
-        type="is-success"
+        type="is-link"
         @click="getCSV()"
       />
     </p>

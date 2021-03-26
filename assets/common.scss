@@ -1,3 +1,5 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
 // 全ての要素がappの中にあるので、全てに適応される
 #app {
   display: flex;
@@ -25,12 +27,18 @@
   flex: 1;
 }
 
-// Bulmaのprimaryカラー
-$turquoise: hsl(171, 100%, 41%);
-.menu-list a.is-active {
-  background-color: $turquoise;
+// ベースカラーのカスタム
+// Set your colors
+$primary: hsl(220, 53%, 44%);
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
+$primary-invert: findColorInvert($primary);
+
+// 左のナビゲーションへのマウスホバー時
+.menu-list a:not(.is-active):hover {
+  color: $primary; // 文字色
 }
 
-.menu-list a:not(.is-active):hover {
-  color: $turquoise;
-}
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";

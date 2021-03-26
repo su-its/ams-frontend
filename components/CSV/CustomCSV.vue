@@ -59,7 +59,7 @@
       size="is-medium"
       icon-left="file-download"
       label="ダウンロード"
-      type="is-info"
+      type="is-link"
       @click="getCSV()"
     />
   </div>

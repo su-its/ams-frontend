@@ -24,7 +24,7 @@
                 <template #trigger="{ active }">
                   <b-button
                     :label="'表示件数: ' + log_meta.contains"
-                    type="is-success is-light"
+                    type="is-link is-light"
                     :icon-right="active ? 'menu-up' : 'menu-down'"
                   />
                 </template>
