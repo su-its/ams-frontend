@@ -5,11 +5,12 @@
   "author": "its",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NUXT_TELEMETRY_DISABLED=1 nuxt",
     "dev_docker": "HOST=0.0.0.0 PORT=3001 nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
+    "build": "NUXT_TELEMETRY_DISABLED=1 nuxt build",
+    "prestart": "npm run build",
+    "start": "NUXT_TELEMETRY_DISABLED=1 nuxt start",
+    "generate": "NUXT_TELEMETRY_DISABLED=1 nuxt generate",
     "lint": "eslint --ext .ts,.js,.vue .",
     "textlint": "textlint --fix"
   },
