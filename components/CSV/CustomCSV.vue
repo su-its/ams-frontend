@@ -39,7 +39,7 @@
         >
           <b-button
             label="本日"
-            type="is-primary"
+            type="is-link"
             icon-left="calendar-today"
             @click="endDate=new Date()"
           />
@@ -59,7 +59,7 @@
       size="is-medium"
       icon-left="file-download"
       label="ダウンロード"
-      type="is-link"
+      type="is-link is-light"
       @click="getCSV()"
     />
   </div>
