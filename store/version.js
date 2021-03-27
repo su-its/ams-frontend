@@ -1,5 +1,6 @@
 export const state = () => ({
-  api_version: {}
+  api_version: {},
+  pkg_version: process.env.PKG_VERSION || '0.1.0'
 })
 
 export const mutations = {
@@ -24,6 +25,14 @@ export const getters = {
    */
   apiVersion: (state) => {
     return state.api_version
+  },
+  /**
+   * package.jsonに書いてあるversionのゲッタ
+   * @param {*} state
+   * @returns {string}
+   */
+  pkgVersion: (state) => {
+    return state.pkg_version
   }
 }
 

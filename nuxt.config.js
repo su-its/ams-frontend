@@ -1,3 +1,5 @@
+import * as packageJson from './package.json'
+
 export default {
   server: {
     // ポート番号を指定
@@ -7,6 +9,11 @@ export default {
   axios: {
     proxy: true,
     prefix: '/api'
+  },
+
+  env: {
+    // このソフトのバージョンを設定(画面に表示するため)
+    PKG_VERSION: packageJson.version || '0.1.0'
   },
 
   proxy: {
@@ -89,5 +96,4 @@ export default {
     // SSEと圧縮の相性が悪いのでオフにしておく
     compressor: false
   }
-
 }
