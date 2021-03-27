@@ -96,8 +96,7 @@ export const actions = {
    * @param state
    */
   setUpSSE ({ commit }) {
-    const baseUrl = process.env.baseUrl
-    const evtSrc = new EventSource(baseUrl + '/users_updated_event')
+    const evtSrc = new EventSource('/api/users_updated_event')
 
     /* eslint-disable no-console */
 
