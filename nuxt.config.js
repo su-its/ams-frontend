@@ -4,9 +4,20 @@ export default {
     port: process.env.APP_PORT
   },
 
-  // APIのURLを指定
-  env: {
-    baseUrl: process.env.API_URL
+  axios: {
+    proxy: true,
+    prefix: '/api'
+  },
+
+  proxy: {
+    // バックエンドAPIをプロクシする
+    '/api': {
+      target: process.env.API_URL,
+      pathRewrite: {
+        // 余計なパスを取り除く
+        '^/api': '/'
+      }
+    }
   },
 
   // ssr: true ユニバーサルモード(サーバサイドレンダリングあり)
@@ -59,12 +70,21 @@ export default {
     // https://go.nuxtjs.dev/buefy
     'nuxt-buefy'
   ],
+
   moment: {
     // momentで日本である事を書く必要がなくなった
     locales: ['ja']
   },
+
   // ビルドの設定
   build: {
   },
-  telemetry: false
+
+  telemetry: false,
+
+  render: {
+    // SSEと圧縮の相性が悪いのでオフにしておく
+    compressor: false
+  }
+
 }
