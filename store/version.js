@@ -1,30 +1,28 @@
 export const state = () => ({
-  api_version: {},
+  backend_version: '',
   pkg_version: process.env.PKG_VERSION
 })
 
 export const mutations = {
 
   /**
-  * API情報をセットする
-  * (ただし、バージョン情報が変わることを動的に通知しなければならないか
-  * 甚だ疑問なので、axios経由させるべきなのかは検討しても良いかも)
-  * @param {*} state
-  * @param {*} payLoad
-  */
-  SET_API_VERSION (state, payLoad) {
-    state.api_version = payLoad
+   * バックエンドのバージョンのセッタ
+   * @param {*} state
+   * @param {*} payLoad
+   */
+  SET_BACKEND_VERSION (state, payload) {
+    state.backend_version = payload
   }
 }
 
 export const getters = {
   /**
-   * API_VERSION情報のゲッタ
+   * バックエンドのバージョンのゲッタ
    * @param state
    * @returns {*}
    */
-  apiVersion: (state) => {
-    return state.api_version
+  backendVersion: (state) => {
+    return state.backend_version
   },
   /**
    * package.jsonに書いてあるversionのゲッタ
@@ -37,14 +35,14 @@ export const getters = {
 }
 
 export const actions = {
-
-  // version情報を取得する
-  // ミューテーション経由で、情報を取得または更新している
-  info ({ commit }) {
-    // 完成したらコメントアウトを外して使ってください
-    // return this.$axios.get('info').then((Response) => {
-    //   commit('SET_API_VERSION', Response.data.data)
-    // })
-    commit('SET_API_VERSION', '2.0.1')
+  /**
+   * バックエンドのversion情報を取得する
+   */
+  getBackendVersion ({ commit }) {
+    return this.$axios.get('version').then((Response) => {
+      commit('SET_BACKEND_VERSION', Response.data.version)
+    }).catch(() => {
+      commit('SET_BACKEND_VERSION', 'バージョンの取得に失敗しました')
+    })
   }
 }

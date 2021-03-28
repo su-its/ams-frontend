@@ -32,7 +32,7 @@
           <div class="card-content">
             <div class="content">
               <p>
-                Ver.{{ API_Version }}<br>
+                Ver.{{ BACKEND_VERSION }}<br>
                 (c) 2021 IT Solution Room, Shizuoka University
               </p>
             </div>
@@ -51,14 +51,14 @@ export default {
     Navigation
   },
   fetch ({ store }) {
-    store.dispatch('version/info')
+    store.dispatch('version/getBackendVersion')
   },
   head: {
     title: 'このシステムについて'
   },
   computed: {
     ...mapGetters({
-      API_Version: 'version/apiVersion',
+      BACKEND_VERSION: 'version/backendVersion',
       PKG_VERSION: 'version/pkgVersion'
     })
   }
