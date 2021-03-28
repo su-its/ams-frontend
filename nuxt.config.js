@@ -86,7 +86,6 @@ export default {
   // ビルドの設定
   build: {
     cache: true,
-    hardSource: true,
     parallel: true
   },
 
