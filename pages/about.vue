@@ -15,7 +15,7 @@
           <div class="card-content">
             <div class="content">
               <p>
-                Ver.0.1.0<br>
+                Ver.{{ PKG_VERSION }}<br>
                 (c) 2021 IT Solution Room, Shizuoka University
               </p>
             </div>
@@ -58,7 +58,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      API_Version: 'version/apiVersion'
+      API_Version: 'version/apiVersion',
+      PKG_VERSION: 'version/pkgVersion'
     })
   }
 }
