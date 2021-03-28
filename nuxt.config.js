@@ -13,7 +13,7 @@ export default {
 
   env: {
     // このソフトのバージョンを設定(画面に表示するため)
-    PKG_VERSION: packageJson.version || '0.1.0'
+    PKG_VERSION: packageJson.version || 'バージョン情報の取得に失敗しました'
   },
 
   proxy: {
