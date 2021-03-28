@@ -1,6 +1,6 @@
 export const state = () => ({
   api_version: {},
-  pkg_version: process.env.PKG_VERSION || '0.1.0'
+  pkg_version: process.env.PKG_VERSION
 })
 
 export const mutations = {
