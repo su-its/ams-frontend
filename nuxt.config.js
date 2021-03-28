@@ -18,11 +18,11 @@ export default {
 
   proxy: {
     // バックエンドAPIをプロクシする
-    '/api': {
+    '/api/': {
       target: process.env.API_URL,
       pathRewrite: {
         // 余計なパスを取り除く
-        '^/api': '/'
+        '^/api/': ''
       },
       xfwd: true // x-forwarded-for を付ける
     }
