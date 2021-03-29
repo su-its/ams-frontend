@@ -23,7 +23,8 @@ export default {
       pathRewrite: {
         // 余計なパスを取り除く
         '^/api': '/'
-      }
+      },
+      xfwd: true // x-forwarded-for を付ける
     }
   },
 
