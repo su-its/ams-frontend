@@ -39,7 +39,7 @@ export const actions = {
    * バックエンドのversion情報を取得する
    */
   getBackendVersion ({ commit }) {
-    return this.$axios.get('version').then((Response) => {
+    return this.$axios.get('/').then((Response) => {
       commit('SET_BACKEND_VERSION', Response.data.version)
     }).catch(() => {
       commit('SET_BACKEND_VERSION', 'バージョンの取得に失敗しました')
