@@ -15,7 +15,7 @@
           <div class="card-content">
             <div class="content">
               <p>
-                Ver.{{ PKG_VERSION }}<br>
+                Version {{ PKG_VERSION }}<br>
                 (c) 2021 IT Solution Room, Shizuoka University
               </p>
             </div>
@@ -32,7 +32,7 @@
           <div class="card-content">
             <div class="content">
               <p>
-                Ver.{{ BACKEND_VERSION }}<br>
+                Version {{ BACKEND_VERSION }}<br>
                 (c) 2021 IT Solution Room, Shizuoka University
               </p>
             </div>
