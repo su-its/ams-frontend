@@ -1,0 +1,27 @@
+// 全ての要素がappの中にあるので、全てに適応される
+#app {
+  display: flex;
+  flex-flow: column;
+  font-family: "メイリオ", Meiryo, sans-serif;
+  min-height: 100vh;
+}
+
+// bulma からパクってきた
+.has-shadow {
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
+}
+
+// ヘッダに適応
+.header {
+  padding: 20px 10px;
+}
+
+.menu-items {
+  font-size: 21px;
+}
+
+// ヘッダとメインコンテンツに適応されてます
+.main-content {
+  flex: 1;
+}
+

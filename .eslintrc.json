@@ -1,0 +1,18 @@
+{
+  // lodashは無視するようにした
+  "globals": { "_": true },
+  "root": true,
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "parserOptions": {
+    "parser": "@babel/eslint-parser"
+  },
+  "extends": ["plugin:nuxt/recommended", "@nuxtjs"],
+  "ignorePatterns": ["dist/", "mock/"],
+  "rules": {
+    "brace-style": ["error", "1tbs", { "allowSingleLine": false }],
+    "curly": ["error", "all"]
+  }
+}

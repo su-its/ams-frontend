@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+
+  # Node.js
+  nuxtjs:
+    container_name: nuxtjs
+    build: ./docker/nodejs
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 3001:3001
+
+    # moduleを動的に入れ替えても大丈夫な環境変数
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  # ﾜﾝﾁｬﾝRedis実装するかも？？？
+
+  # docs_CIは要検討
