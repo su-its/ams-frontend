@@ -63,18 +63,40 @@
 <script>
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
-import nuxtend from 'nuxtend'
-import CommonMixin from '~/plugins/common'
 import Navigation from '~/components/Common/Navigation'
 import AccessLogCard from '~/components/AccessLogCard'
 import CSVDownload from '~/components/CSV/CSVDownload'
-export default nuxtend({
+
+/**
+ * pageの情報を追加、あるいはチェックするメソッド
+ * @param {*} data 数字のデータ(違うデータを入れた場合1扱いになります)
+ * @returns {Number} page 何もなければ1、そうでなければ該当するページが帰ってきます
+ */
+function checkNullPageData (data) {
+  if (_.isNumber(data)) {
+    return data
+  } else {
+    return 1
+  }
+};
+
+export default {
   components: {
     Navigation,
     AccessLogCard,
     CSVDownload
   },
-  mixins: [CommonMixin],
+  asyncData ({ store, query }) {
+    // page情報のヴァリデーション
+    const page = checkNullPageData(query.page)
+    return Promise.all([
+      store.dispatch('logging/getAccessLogs', { page })
+    ]).then(() => {
+      return {
+        log_meta: _.cloneDeep(store.getters['logging/accessLogMetaData'])
+      }
+    })
+  },
   data () {
     return {
       current_page: 1,
@@ -86,17 +108,6 @@ export default nuxtend({
         { value: 20 }
       ]
     }
-  },
-  asyncData ({ store, query }) {
-    // page情報のヴァリデーション
-    const page = this.checkNullPageData(query.page)
-    return Promise.all([
-      store.dispatch('logging/getAccessLogs', { page })
-    ]).then(() => {
-      return {
-        log_meta: _.cloneDeep(store.getters['logging/accessLogMetaData'])
-      }
-    })
   },
   head: {
     title: '入退室ログ'
@@ -136,7 +147,7 @@ export default nuxtend({
       // パラメータ用のObjectを用意
       const params = {}
       // page情報のヴァリデーション
-      const page = this.checkNullPageData(this.current_page)
+      const page = checkNullPageData(this.current_page)
       // ページ情報を代入
       params.page = page
       // perPageを代入
@@ -145,5 +156,5 @@ export default nuxtend({
       this.$store.dispatch('logging/getAccessLogs', params)
     }
   }
-})
+}
 </script>

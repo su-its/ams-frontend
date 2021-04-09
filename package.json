@@ -24,7 +24,6 @@
     "json2csv": "^5.0.6",
     "nuxt": "^2.15.3",
     "nuxt-buefy": "^0.4.4",
-    "nuxtend": "^0.2.6",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1"
   },

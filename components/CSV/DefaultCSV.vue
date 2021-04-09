@@ -14,9 +14,8 @@
 </template>
 
 <script>
-import nuxtend from 'nuxtend'
 import common from '~/plugins/common'
-export default nuxtend({
+export default {
   mixins: [common],
   methods: {
     getCSV () {
@@ -24,5 +23,5 @@ export default nuxtend({
       this.download()
     }
   }
-})
+}
 </script>
