@@ -1,6 +1,4 @@
 {
-  // lodashは無視するようにした
-  "globals": { "_": true },
   "root": true,
   "env": {
     "es2021": true,
