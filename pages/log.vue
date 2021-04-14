@@ -9,21 +9,14 @@
           <CSVDownload />
           <br>
           <div class="card">
-            <!-- <b-collapse
-              class="panel"
-              animation="slide"
-              v-model="isOpenLog"
-            > -->
-            <!-- <template #trigger> -->
             <div class="card-header">
               <p class="card-header-title">
                 入退室ログ
-                <!-- <b-icon size="is-medium" :icon="isOpenLog ? 'menu-down' : 'menu-up'" /> -->
               </p>
               <b-dropdown aria-role="list">
                 <template #trigger="{ active }">
                   <b-button
-                    :label="'表示件数: ' + log_meta.contains"
+                    :label="'表示件数: ' + log_meta.per_page"
                     type="is-success is-light"
                     :icon-right="active ? 'menu-up' : 'menu-down'"
                   />
@@ -41,18 +34,16 @@
                 </div>
               </b-dropdown>
             </div>
-            <!-- </template> -->
             <AccessLogCard :log-data="log_data" />
             <b-pagination
               v-model="current_page"
               :total="log_meta.total"
               order="is-centered"
-              :per-page="log_meta.contains"
+              :per-page="log_meta.per_page"
               :range-before="3"
               :range-after="1"
               @change="pagination"
             />
-            <!-- </b-collapse> -->
           </div>
         </div>
       </div>
@@ -61,24 +52,37 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import { mapGetters } from 'vuex'
-import nuxtend from 'nuxtend'
-import CommonMixin from '~/plugins/common'
 import Navigation from '~/components/Common/Navigation'
 import AccessLogCard from '~/components/AccessLogCard'
 import CSVDownload from '~/components/CSV/CSVDownload'
-export default nuxtend({
+
+/**
+ * pageの情報を追加、あるいはチェックするメソッド
+ * @param {*} data 数字のデータ(違うデータを入れた場合1扱いになります)
+ * @returns {Number} page 何もなければ1、そうでなければ該当するページが帰ってきます
+ */
+function checkNullPageData (data) {
+  if (Number.isInteger(data)) {
+    return data
+  } else {
+    return 1
+  }
+};
+
+export default {
   components: {
     Navigation,
     AccessLogCard,
     CSVDownload
   },
-  mixins: [CommonMixin],
+  async asyncData ({ store }) {
+    const page = 1 // ページ読み込み時はログの1ページ目を表示
+    await store.dispatch('logging/getAccessLogs', { page })
+  },
   data () {
     return {
       current_page: 1,
-      isOpenLog: true,
       per_page: [
         { value: 5 },
         { value: 10 },
@@ -87,63 +91,46 @@ export default nuxtend({
       ]
     }
   },
-  asyncData ({ store, query }) {
-    // page情報のヴァリデーション
-    const page = this.checkNullPageData(query.page)
-    return Promise.all([
-      store.dispatch('logging/getAccessLogs', { page })
-    ]).then(() => {
-      return {
-        log_meta: _.cloneDeep(store.getters['logging/accessLogMetaData'])
-      }
-    })
-  },
   head: {
     title: '入退室ログ'
   },
   computed: {
     ...mapGetters({
-      log_data: 'logging/accessLogs'
+      log_data: 'logging/accessLogs',
+      log_meta: 'logging/accessLogMetaData'
     })
   },
   methods: {
     /**
      * @param {Number} 切り替えたいper_page
-     * @returns {*} vuexが書き換わっているけど、一ページ目に遷移する
+     * @returns {*} vuexが書き換わっているけど、1ページ目に遷移する
      * (じゃないと参照したい情報が正しく表示されない)
      */
     async changePerPagePagination (perPage) {
       // パラメータ用のObjectを用意
-      const params = {}
-      // ページは強制的に1ページ目
-      const page = 1
-      // ページ情報を代入
-      params.page = page
-      // perPageを代入
-      params.perPage = perPage
+      const params = {
+        page: 1, // per_pageを変えるので1ページ目に戻す
+        perPage
+      }
+
       // データのフェッチ
       await this.$store.dispatch('logging/getAccessLogs', params)
-      // meta情報を更新
-      this.log_meta = _.cloneDeep(this.$store.getters['logging/accessLogMetaData'])
-      // 1ページ目に遷移
+
+      // ページネーションも1ページ目に戻す
       this.current_page = 1
     },
-    /**
-     * @param null
-     * @returns {*} vuexが書き換わっている
-     */
-    pagination () {
+
+    async pagination () {
       // パラメータ用のObjectを用意
-      const params = {}
-      // page情報のヴァリデーション
-      const page = this.checkNullPageData(this.current_page)
-      // ページ情報を代入
-      params.page = page
-      // perPageを代入
-      params.perPage = this.log_meta.contains
+      const params = {
+        // v-model経由の外部入力なのでvalidationする
+        page: checkNullPageData(this.current_page),
+        perPage: this.log_meta.per_page
+      }
+
       // データのフェッチ
-      this.$store.dispatch('logging/getAccessLogs', params)
+      await this.$store.dispatch('logging/getAccessLogs', params)
     }
   }
-})
+}
 </script>
