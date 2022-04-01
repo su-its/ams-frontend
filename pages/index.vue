@@ -34,6 +34,10 @@ export default {
     ...mapGetters({
       room_user: 'logging/inRoomUsers'
     })
+  },
+  mounted: function() {
+    // ラズパイを長時間動かしているとServer Sent Eventを受信しなくなることがあるので定期的にリロードする
+    setTimeout(()=>location.reload(), 60000)
   }
 }
 </script>
