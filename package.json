@@ -21,7 +21,7 @@
     "@nuxtjs/proxy": "^2.1.0",
     "core-js": "^3.9.1",
     "json2csv": "^5.0.6",
-    "nuxt": "^2.15.3",
+    "nuxt": "^3.4.3",
     "nuxt-buefy": "^0.4.4",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1"
