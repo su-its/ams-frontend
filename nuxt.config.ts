@@ -10,7 +10,14 @@ export default defineNuxtConfig({
     payloadExtraction: true,
   },
   devServer: {
-    port: (typeof process.env.APP_PORT === "number") ? process.env.APP_PORT : 3001,
+    port:
+      typeof process.env.APP_PORT === "number" ? process.env.APP_PORT : 3001,
+  },
+  runtimeConfig: {
+    public: {
+      PKG_VERSION: packageJson.version || "バージョン情報の取得に失敗しました",
+      BaseURL: process.env.API_URL || "",
+    },
   },
   // server: {
   //   // ポート番号を指定
@@ -75,10 +82,10 @@ export default defineNuxtConfig({
   },
 
   // CSS
-  css: ["@/assets/common.scss"],
+  css: ["@/assets/common.scss", "@fortawesome/fontawesome-svg-core/styles.css"],
 
   // ビルドする前にロードするプラグイン
-  plugins: [],
+  plugins: ["@/plugins/fontawesome.ts"],
 
   // 一般的なモジュール
   modules: [],
