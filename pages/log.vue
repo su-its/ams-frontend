@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-3 section">
-        <Navigation />
+        <CommonNavigation />
       </div>
       <div class="column is-9 section">
         <div>
@@ -51,86 +51,58 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
-import Navigation from '~/components/Common/Navigation'
-import AccessLogCard from '~/components/AccessLogCard'
-import CSVDownload from '~/components/CSV/CSVDownload'
-
+<script setup>
 /**
  * pageの情報を追加、あるいはチェックするメソッド
  * @param {*} data 数字のデータ(違うデータを入れた場合1扱いになります)
  * @returns {Number} page 何もなければ1、そうでなければ該当するページが帰ってきます
  */
-function checkNullPageData (data) {
+function checkNullPageData(data) {
   if (Number.isInteger(data)) {
-    return data
+    return data;
   } else {
-    return 1
+    return 1;
   }
-};
+}
+const current_page = ref(1);
+const per_page = [{ value: 5 }, { value: 10 }, { value: 15 }, { value: 20 }];
+useHead({
+  title: "入退室ログ",
+});
+// computed: {
+//   ...mapGetters({
+//     log_data: 'logging/accessLogs',
+//     log_meta: 'logging/accessLogMetaData'
+//   })
+// }
+/**
+ * @param {Number} 切り替えたいper_page
+ * @returns {*} vuexが書き換わっているけど、1ページ目に遷移する
+ * (じゃないと参照したい情報が正しく表示されない)
+ */
+async function changePerPagePagination(perPage) {
+  // パラメータ用のObjectを用意
+  const params = {
+    page: 1, // per_pageを変えるので1ページ目に戻す
+    perPage,
+  };
 
-export default {
-  components: {
-    Navigation,
-    AccessLogCard,
-    CSVDownload
-  },
-  async asyncData ({ store }) {
-    const page = 1 // ページ読み込み時はログの1ページ目を表示
-    await store.dispatch('logging/getAccessLogs', { page })
-  },
-  data () {
-    return {
-      current_page: 1,
-      per_page: [
-        { value: 5 },
-        { value: 10 },
-        { value: 15 },
-        { value: 20 }
-      ]
-    }
-  },
-  head: {
-    title: '入退室ログ'
-  },
-  computed: {
-    ...mapGetters({
-      log_data: 'logging/accessLogs',
-      log_meta: 'logging/accessLogMetaData'
-    })
-  },
-  methods: {
-    /**
-     * @param {Number} 切り替えたいper_page
-     * @returns {*} vuexが書き換わっているけど、1ページ目に遷移する
-     * (じゃないと参照したい情報が正しく表示されない)
-     */
-    async changePerPagePagination (perPage) {
-      // パラメータ用のObjectを用意
-      const params = {
-        page: 1, // per_pageを変えるので1ページ目に戻す
-        perPage
-      }
+  // データのフェッチ
+  // await this.$store.dispatch('logging/getAccessLogs', params)
 
-      // データのフェッチ
-      await this.$store.dispatch('logging/getAccessLogs', params)
+  // ページネーションも1ページ目に戻す
+  current_page.value = 1;
+}
 
-      // ページネーションも1ページ目に戻す
-      this.current_page = 1
-    },
+async function pagination() {
+  // パラメータ用のObjectを用意
+  const params = {
+    // v-model経由の外部入力なのでvalidationする
+    page: checkNullPageData(current_page.value),
+    perPage: per_page,
+  };
 
-    async pagination () {
-      // パラメータ用のObjectを用意
-      const params = {
-        // v-model経由の外部入力なのでvalidationする
-        page: checkNullPageData(this.current_page),
-        perPage: this.log_meta.per_page
-      }
-
-      // データのフェッチ
-      await this.$store.dispatch('logging/getAccessLogs', params)
-    }
-  }
+  // データのフェッチ
+  // await this.$store.dispatch('logging/getAccessLogs', params)
 }
 </script>
