@@ -2,7 +2,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-3 section">
-        <Navigation />
+        <CommonNavigation />
       </div>
       <div class="column is-9 section">
         <!-- フロントエンドのver表記 -->
@@ -43,24 +43,13 @@
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
-import Navigation from '~/components/Common/Navigation'
-export default {
-  components: {
-    Navigation
-  },
-  fetch ({ store }) {
-    store.dispatch('version/getBackendVersion')
-  },
-  head: {
-    title: 'このシステムについて'
-  },
-  computed: {
-    ...mapGetters({
-      BACKEND_VERSION: 'version/backendVersion',
-      PKG_VERSION: 'version/pkgVersion'
-    })
-  }
-}
+<script setup>
+const config = useRuntimeConfig()
+useHead({
+  title: "このシステムについて",
+});
+const BACKEND_VERSION = await $fetch(config.public.BaseURL).then(
+  (Response) => Response.version
+);
+const PKG_VERSION = config.public.PKG_VERSION;
 </script>
