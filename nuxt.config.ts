@@ -9,6 +9,9 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true,
   },
+  devServer: {
+    port: (typeof process.env.APP_PORT === "number") ? process.env.APP_PORT : 3001,
+  },
   // server: {
   //   // ポート番号を指定
   //   port: process.env.APP_PORT,
