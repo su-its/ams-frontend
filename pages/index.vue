@@ -19,7 +19,7 @@
 //   store.dispatch('logging/setUpSSE')
 // },
 const room_user = ref([])
-room_user.value = $fetch('/users_in_room')
+room_user.value = await $fetch('http://localhost:3000/v1/users_in_room').then((Response) => Response.data)
 useHead({
   title: "ITS-AMS コントロールパネル",
   titleTemplate: "",

@@ -21,11 +21,11 @@ export function UseUtils() {
       /* APIからデータを持ってきて、生成したCSVをダウンロードさせる */
       /* eslint-disable no-console */
       $fetch('/access_logs/bulk' + queryStr)
-        .then((resp) => {
+        .then((resp: any) => {
           try {
           _generateAndDownloadCSV(resp.data)
             // $buefy.snackbar.open('ダウンロードしました。')
-          } catch (err) {
+          } catch (err: any) {
             console.debug(err)
             // $buefy.snackbar.open('ダウンロード失敗（パースエラー）')
           }
