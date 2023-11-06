@@ -29,14 +29,8 @@
   </b-menu>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      isActiveRoutePage: this.$route.name === 'index',
-      isActiveLogPage: this.$route.name === 'log',
-      isActiveInfoPage: this.$route.name === 'about'
-    }
-  }
-}
+<script setup>
+const isActiveRoutePage = useRoute().name === 'index'
+const isActiveLogPage = useRoute().name === 'log'
+const isActiveInfoPage = useRoute().name === 'about'
 </script>

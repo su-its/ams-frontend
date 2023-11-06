@@ -66,9 +66,7 @@
 </template>
 
 <script>
-import common from '~/plugins/common'
 export default {
-  mixins: [common],
   data () {
     return {
       startDate: null,

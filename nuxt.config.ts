@@ -9,26 +9,26 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true,
   },
-  server: {
-    // ポート番号を指定
-    port: process.env.APP_PORT,
-  },
-  env: {
-    // このソフトのバージョンを設定(画面に表示するため)
-    PKG_VERSION: packageJson.version || "バージョン情報の取得に失敗しました",
-  },
+  // server: {
+  //   // ポート番号を指定
+  //   port: process.env.APP_PORT,
+  // },
+  // env: {
+  //   // このソフトのバージョンを設定(画面に表示するため)
+  //   PKG_VERSION: packageJson.version || "バージョン情報の取得に失敗しました",
+  // },
 
-  proxy: {
-    // バックエンドAPIをプロクシする
-    "/api/": {
-      target: process.env.API_URL,
-      pathRewrite: {
-        // 余計なパスを取り除く
-        "^/api/": "",
-      },
-      xfwd: true, // x-forwarded-for を付ける
-    },
-  },
+  // proxy: {
+  //   // バックエンドAPIをプロクシする
+  //   "/api/": {
+  //     target: process.env.API_URL,
+  //     pathRewrite: {
+  //       // 余計なパスを取り除く
+  //       "^/api/": "",
+  //     },
+  //     xfwd: true, // x-forwarded-for を付ける
+  //   },
+  // },
 
   // ssr: true ユニバーサルモード(サーバサイドレンダリングあり)
   // ssr: false シングルページアプリケーションモード
@@ -52,10 +52,10 @@ export default defineNuxtConfig({
     },
   },
   // データの入出力を全てJSONで行うように設定
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   Accept: "application/json",
+  // },
   vite: {
     build: {
       chunkSizeWarningLimit: 100000000,
@@ -63,7 +63,7 @@ export default defineNuxtConfig({
     define: {
       "process.env.DEBUG": false,
     },
-    optimizeDeps: { exclude: ["fsevents"] },
+    optimizeDeps: { exclude: ["fsevents"], include: ["vue-router"] },
     server: {
       fs: {
         strict: false,
@@ -80,10 +80,10 @@ export default defineNuxtConfig({
   // 一般的なモジュール
   modules: [],
 
-  moment: {
-    // momentで日本である事を書く必要がなくなった
-    locales: ["ja"],
-  },
+  // moment: {
+  //   // momentで日本である事を書く必要がなくなった
+  //   locales: ["ja"],
+  // },
 
   // ビルドの設定
   // build: {
@@ -93,8 +93,8 @@ export default defineNuxtConfig({
 
   telemetry: false,
 
-  render: {
-    // SSEと圧縮の相性が悪いのでオフにしておく
-    compressor: false,
-  },
+  // render: {
+  //   // SSEと圧縮の相性が悪いのでオフにしておく
+  //   compressor: false,
+  // },
 });

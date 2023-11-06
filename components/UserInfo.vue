@@ -20,15 +20,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    user: {
-      type: Object,
-      default () {
-        return {}
-      }
-    }
-  }
-}
+<script setup>
+defineProps({
+  user: { Object, default: {}}
+})
 </script>

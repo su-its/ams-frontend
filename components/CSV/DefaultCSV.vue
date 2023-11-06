@@ -14,9 +14,7 @@
 </template>
 
 <script>
-import common from '~/plugins/common'
 export default {
-  mixins: [common],
   methods: {
     getCSV () {
       // バックエンドのデフォルトの期間指定に任せる
