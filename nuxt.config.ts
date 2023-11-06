@@ -79,6 +79,9 @@ export default defineNuxtConfig({
         strict: false,
       },
     },
+    ssr: {
+      noExternal: ["moment"],
+    },
   },
 
   // CSS
