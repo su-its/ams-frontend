@@ -13,38 +13,46 @@
               <p class="card-header-title">
                 入退室ログ
               </p>
-              <b-dropdown aria-role="list">
-                <template #trigger="{ active }">
-                  <b-button
-                    :label="'表示件数: ' + log_meta.per_page"
-                    type="is-success is-light"
-                    :icon-right="active ? 'menu-up' : 'menu-down'"
-                  />
-                </template>
+            </div>
+          </div>
+
+          <span class="dropdown is-active">
+            <div class="dropdown-trigger">
+              <button
+                class="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+              >
+                <span>表示件数: {{ perPage }}</span>
+              </button>
+            </div>
+            <div
+              class="dropdown-menu"
+              id="dropdown-menu"
+              role="menu"
+            >
+              <div class="dropdown-content">
                 <div
                   v-for="i in per_page"
-                  :key="i.value"
+                  class="dropdown-item"
                 >
-                  <b-dropdown-item
-                    aria-role="listitem"
-                    @click="changePerPagePagination(i.value)"
-                  >
+                  <button @click="changePerPagePagination(i.value)">
                     {{ i.value }}
-                  </b-dropdown-item>
+                  </button>
                 </div>
-              </b-dropdown>
+              </div>
             </div>
-            <AccessLogCard :log-data="log_data" />
-            <b-pagination
-              v-model="current_page"
-              :total="log_meta.total"
-              order="is-centered"
-              :per-page="log_meta.per_page"
-              :range-before="3"
-              :range-after="1"
-              @change="pagination"
-            />
-          </div>
+          </span>
+          <AccessLogCard :log-data="log_data" />
+          <b-pagination
+            v-model="current_page"
+            :total="log_meta.total"
+            order="is-centered"
+            :per-page="log_meta.per_page"
+            :range-before="3"
+            :range-after="1"
+            @change="pagination"
+          />
         </div>
       </div>
     </div>
@@ -65,10 +73,31 @@ function checkNullPageData(data) {
   }
 }
 const current_page = ref(1);
+const page = ref(1);
 const per_page = [{ value: 5 }, { value: 10 }, { value: 15 }, { value: 20 }];
+const perPage = ref(20);
 useHead({
   title: "入退室ログ",
 });
+
+const log_data = ref();
+const log_meta = ref();
+log_data.value = await $fetch(
+  useRuntimeConfig().public.BaseURL +
+    "/access_logs" +
+    "?page=" +
+    page.value +
+    "&per_page=" +
+    perPage.value
+).then((Response) => Response.data);
+log_meta.value = await $fetch(
+  useRuntimeConfig().public.BaseURL +
+    "/access_logs" +
+    "?page=" +
+    page.value +
+    "&per_page=" +
+    perPage.value
+).then((Response) => Response.meta);
 // computed: {
 //   ...mapGetters({
 //     log_data: 'logging/accessLogs',
@@ -80,18 +109,28 @@ useHead({
  * @returns {*} vuexが書き換わっているけど、1ページ目に遷移する
  * (じゃないと参照したい情報が正しく表示されない)
  */
-async function changePerPagePagination(perPage) {
-  // パラメータ用のObjectを用意
-  const params = {
-    page: 1, // per_pageを変えるので1ページ目に戻す
-    perPage,
-  };
-
+async function changePerPagePagination(perPage_) {
   // データのフェッチ
-  // await this.$store.dispatch('logging/getAccessLogs', params)
+  log_data.value = await $fetch(
+  useRuntimeConfig().public.BaseURL +
+    "/access_logs" +
+    "?page=" +
+    page.value +
+    "&per_page=" +
+    perPage_
+).then((Response) => Response.data);
+log_meta.value = await $fetch(
+  useRuntimeConfig().public.BaseURL +
+    "/access_logs" +
+    "?page=" +
+    page.value +
+    "&per_page=" +
+    perPage_
+).then((Response) => Response.meta);
 
   // ページネーションも1ページ目に戻す
   current_page.value = 1;
+  perPage.value = perPage_
 }
 
 async function pagination() {
@@ -103,6 +142,21 @@ async function pagination() {
   };
 
   // データのフェッチ
-  // await this.$store.dispatch('logging/getAccessLogs', params)
+  log_data.value = await $fetch(
+  useRuntimeConfig().public.BaseURL +
+    "/access_logs" +
+    "?page=" +
+    page.value +
+    "&per_page=" +
+    perPage.value
+).then((Response) => Response.data);
+log_meta.value = await $fetch(
+  useRuntimeConfig().public.BaseURL +
+    "/access_logs" +
+    "?page=" +
+    page.value +
+    "&per_page=" +
+    perPage.value
+).then((Response) => Response.meta);
 }
 </script>
