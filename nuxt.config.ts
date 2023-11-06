@@ -86,10 +86,10 @@ export default defineNuxtConfig({
   },
 
   // ビルドの設定
-  build: {
-    cache: true,
-    parallel: true,
-  },
+  // build: {
+  //   cache: true,
+  //   parallel: true,
+  // },
 
   telemetry: false,
 
