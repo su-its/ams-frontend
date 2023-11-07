@@ -2,17 +2,17 @@
   <aside class="menu">
     <ul class="menu-list">
       <li>
-        <a class="isActiveRoutePage"><font-awesome-icon icon="house" />
-          <NuxtLink to="/">現在の在室状況</NuxtLink>
+        <a class="isActiveRoutePage">
+          <NuxtLink to="/"><font-awesome-icon icon="house" />現在の在室状況</NuxtLink>
         </a>
       </li>
       <li>
-        <a class="isActiveLogPage"><font-awesome-icon icon="table-cells-large" />
-          <NuxtLink to="/log">入退室ログの表示</NuxtLink>
+        <a class="isActiveLogPage">
+          <NuxtLink to="/log"><font-awesome-icon icon="table-cells-large" />入退室ログの表示</NuxtLink>
         </a>
       </li>
-      <li><a class="isActiveInfoPage"><font-awesome-icon icon="info" />
-          <NuxtLink to="/about">このシステムについて</NuxtLink>
+      <li><a class="isActiveInfoPage">
+          <NuxtLink to="/about"><font-awesome-icon icon="info" />このシステムについて</NuxtLink>
         </a>
       </li>
     </ul>
