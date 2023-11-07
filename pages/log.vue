@@ -16,43 +16,49 @@
             </div>
           </div>
 
-          <span class="dropdown is-active">
+          <div class="dropdown is-hoverable">
             <div class="dropdown-trigger">
               <button
                 class="button"
                 aria-haspopup="true"
-                aria-controls="dropdown-menu"
+                aria-controls="dropdown-menu_"
               >
                 <span>表示件数: {{ perPage }}</span>
               </button>
             </div>
             <div
               class="dropdown-menu"
-              id="dropdown-menu"
+              id="dropdown-menu_"
               role="menu"
             >
               <div class="dropdown-content">
-                <div
+                <a
+                  href="#"
                   v-for="i in per_page"
                   class="dropdown-item"
+                  @click="changePerPagePagination(i.value)"
                 >
-                  <button @click="changePerPagePagination(i.value)">
-                    {{ i.value }}
-                  </button>
-                </div>
+                  {{ i.value }}
+                </a>
               </div>
             </div>
-          </span>
+          </div>
           <AccessLogCard :log-data="log_data" />
-          <b-pagination
-            v-model="current_page"
-            :total="log_meta.total"
-            order="is-centered"
-            :per-page="log_meta.per_page"
-            :range-before="3"
-            :range-after="1"
-            @change="pagination"
-          />
+          <nav
+            class="pagination"
+            role="navigation"
+            aria-label="pagination"
+          >
+            <ul class="pagination-list">
+              <li>
+                <a
+                  v-for="i in log_meta.total_page"
+                  class="pagination-link"
+                  @click="pagination(i)"
+                >{{ i }}</a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
@@ -60,6 +66,20 @@
 </template>
 
 <script setup>
+onUpdated(() => {
+  let elem = document.getElementsByClassName("pagination-link");
+  for (let i = 0; i < elem.length; i++) {
+    elem[i].classList.remove("is-current");
+  }
+  elem[current_page.value - 1].classList.add("is-current");
+});
+onMounted(() => {
+  let elem = document.getElementsByClassName("pagination-link");
+  for (let i = 0; i < elem.length; i++) {
+    elem[i].classList.remove("is-current");
+  }
+  elem[current_page.value - 1].classList.add("is-current");
+});
 /**
  * pageの情報を追加、あるいはチェックするメソッド
  * @param {*} data 数字のデータ(違うデータを入れた場合1扱いになります)
@@ -112,51 +132,49 @@ log_meta.value = await $fetch(
 async function changePerPagePagination(perPage_) {
   // データのフェッチ
   log_data.value = await $fetch(
-  useRuntimeConfig().public.BaseURL +
-    "/access_logs" +
-    "?page=" +
-    page.value +
-    "&per_page=" +
-    perPage_
-).then((Response) => Response.data);
-log_meta.value = await $fetch(
-  useRuntimeConfig().public.BaseURL +
-    "/access_logs" +
-    "?page=" +
-    page.value +
-    "&per_page=" +
-    perPage_
-).then((Response) => Response.meta);
+    useRuntimeConfig().public.BaseURL +
+      "/access_logs" +
+      "?page=" +
+      page.value +
+      "&per_page=" +
+      perPage_
+  ).then((Response) => Response.data);
+  log_meta.value = await $fetch(
+    useRuntimeConfig().public.BaseURL +
+      "/access_logs" +
+      "?page=" +
+      page.value +
+      "&per_page=" +
+      perPage_
+  ).then((Response) => Response.meta);
 
   // ページネーションも1ページ目に戻す
   current_page.value = 1;
-  perPage.value = perPage_
+  perPage.value = perPage_;
 }
 
-async function pagination() {
+async function pagination(current_page_) {
   // パラメータ用のObjectを用意
-  const params = {
-    // v-model経由の外部入力なのでvalidationする
-    page: checkNullPageData(current_page.value),
-    perPage: per_page,
-  };
-
+  // v-model経由の外部入力なのでvalidationする
+  const page_ = checkNullPageData(current_page_);
+  page.value = page_;
+  current_page.value = page_;
   // データのフェッチ
   log_data.value = await $fetch(
-  useRuntimeConfig().public.BaseURL +
-    "/access_logs" +
-    "?page=" +
-    page.value +
-    "&per_page=" +
-    perPage.value
-).then((Response) => Response.data);
-log_meta.value = await $fetch(
-  useRuntimeConfig().public.BaseURL +
-    "/access_logs" +
-    "?page=" +
-    page.value +
-    "&per_page=" +
-    perPage.value
-).then((Response) => Response.meta);
+    useRuntimeConfig().public.BaseURL +
+      "/access_logs" +
+      "?page=" +
+      page.value +
+      "&per_page=" +
+      perPage.value
+  ).then((Response) => Response.data);
+  log_meta.value = await $fetch(
+    useRuntimeConfig().public.BaseURL +
+      "/access_logs" +
+      "?page=" +
+      page.value +
+      "&per_page=" +
+      perPage.value
+  ).then((Response) => Response.meta);
 }
 </script>
