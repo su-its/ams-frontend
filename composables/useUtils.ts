@@ -20,7 +20,7 @@ export function UseUtils() {
 
       /* APIからデータを持ってきて、生成したCSVをダウンロードさせる */
       /* eslint-disable no-console */
-      $fetch('/access_logs/bulk' + queryStr)
+      $fetch(useRuntimeConfig().public.BaseURL + '/access_logs/bulk' + queryStr)
         .then((resp: any) => {
           try {
           _generateAndDownloadCSV(resp.data)

@@ -19,7 +19,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-const activeTab = ref(0);
-</script>
