@@ -27,6 +27,7 @@
 
 <script setup>
 import bulmaCalendar from "bulma-calendar";
+import moment from "moment";
 
 const startDate = ref(new Date());
 const endDate = ref(new Date());
@@ -34,18 +35,20 @@ const snackbar = ref();
 const startDateTrigger = ref(false);
 const endDateTrigger = ref(false);
 // CSVのファイル名が年2桁なのでambiguousにならないようにしておく
-const minDate = new Date("2000-01-01");
-const maxDate = new Date("2099-12-31");
 
 onMounted(() => {
   const startCalender = bulmaCalendar.attach(startDateTrigger.value, {
     startDate: new Date(),
+    minDate: new Date("2000-01-01"),
+    maxDate: new Date("2099-12-31"),
     lang: "ja",
     type: "date",
   })[0];
   startCalender.on("select", (e) => (startDate.value = e.start || null));
   const endCalender = bulmaCalendar.attach(endDateTrigger.value, {
     startDate: new Date(),
+    minDate: new Date("2000-01-01"),
+    maxDate: new Date("2099-12-31"),
     lang: "ja",
     type: "date",
   })[0];
@@ -74,7 +77,7 @@ function getCSV() {
       position: "is-top",
     });
   } else {
-    // UseUtils().download(startDate_, endDate_);
+    UseUtils().download(startDate_, endDate_);
   }
 }
 </script>

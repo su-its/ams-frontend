@@ -15,7 +15,6 @@ import moment from "moment";
 
 function getCSV() {
   // バックエンドのデフォルトの期間指定に任せる
-  // TODO: 有効化する
-  // UseUtils().download(moment().day(-90), moment());
+  UseUtils().download(moment().day(-90), moment());
 }
 </script>
