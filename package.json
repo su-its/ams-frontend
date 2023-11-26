@@ -20,7 +20,7 @@
     "@json2csv/plainjs": "^7.0.3",
     "bulma-calendar": "^6.1.19",
     "moment": "^2.29.4",
-    "nuxt": "^3.8.1",
+    "nuxt": "^3.8.2",
     "sass": "^1.69.5"
   },
   "devDependencies": {
@@ -33,7 +33,7 @@
     "eslint": "^8.54.0",
     "eslint-plugin-nuxt": "^4.0.0",
     "node-sass": "^9.0.0",
-    "textlint": "^13.4.0",
+    "textlint": "^13.4.1",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-plugin-asciidoctor": "^1.1.0",
