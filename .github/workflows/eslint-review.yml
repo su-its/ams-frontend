@@ -1,5 +1,9 @@
 name: Review eslint
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
 jobs:
   eslint:
     name: eslint
@@ -12,7 +16,7 @@ jobs:
       - name: eslintによるレビュー
         uses: reviewdog/action-eslint@v1
         with:
-          eslint_flags: '. --ext .js,.ts,.vue'
+          eslint_flags: ". --ext .js,.ts,.vue"
           fail_on_error: true
           level: info
           reporter: github-pr-review
