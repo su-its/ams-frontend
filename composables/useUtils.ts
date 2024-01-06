@@ -81,6 +81,7 @@ function _generateAndDownloadCSV(obj: {
       },
     ],
   });
+  //TODO: この部分データがあるとエラります。obj.dataはarrayです
   if (!isValidStructure(obj.data)) {
     throw Error("error parsing csv");
   }
