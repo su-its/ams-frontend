@@ -1,6 +1,27 @@
 <template>
   <div>
     <div
+      class="notification is-danger is-light"
+      v-bind:hidden="snackbar_1"
+    >
+      <button class="delete" v-on:click="closeDialog1"></button>
+      開始日を設定してください
+    </div>
+    <div
+      class="notification is-danger is-light"
+      v-bind:hidden="snackbar_2"
+    >
+      <button class="delete" v-on:click="closeDialog2"></button>
+      終了日を設定してください
+    </div>
+    <div
+      class="notification is-danger is-light"
+      v-bind:hidden="snackbar_3"
+    >
+      <button class="delete" v-on:click="closeDialog3"></button>
+      開始日は必ず終了日より前に設定してください
+    </div>
+    <div
       class="field"
       grouped
     >
@@ -31,20 +52,22 @@ import moment from "moment";
 
 const startDate = ref(new Date());
 const endDate = ref(new Date());
-const snackbar = ref();
+const snackbar_1 = ref(true);
+const snackbar_2 = ref(true);
+const snackbar_3 = ref(true);
 const startDateTrigger = ref(false);
 const endDateTrigger = ref(false);
 // CSVのファイル名が年2桁なのでambiguousにならないようにしておく
 
 onMounted(() => {
   const startCalender = bulmaCalendar.attach(startDateTrigger.value, {
-    startDate: new Date(),
+    startDate: startDate.value,
     minDate: new Date("2000-01-01"),
     maxDate: new Date("2099-12-31"),
     lang: "ja",
     type: "date",
   })[0];
-  startCalender.on("select", (e) => (startDate.value = e.start || null));
+  startCalender.on("select", (e) => (startDate.value = e.data.startDate || null));
   const endCalender = bulmaCalendar.attach(endDateTrigger.value, {
     startDate: new Date(),
     minDate: new Date("2000-01-01"),
@@ -52,32 +75,32 @@ onMounted(() => {
     lang: "ja",
     type: "date",
   })[0];
-  endCalender.on("select", (e) => (endDate.value = e.start || null));
+  endCalender.on("select", (e) => (endDate.value = e.data.startDate || null));
 });
 
 function getCSV() {
   const startDate_ = moment(startDate.value);
   const endDate_ = moment(endDate.value);
   if (!startDate_.isValid()) {
-    snackbar.value.open({
-      message: "開始日を設定してください",
-      type: "is-warning",
-      position: "is-top",
-    });
+    snackbar_1.value = false;
   } else if (!endDate_.isValid()) {
-    snackbar.value.open({
-      message: "終了日を設定してください",
-      type: "is-warning",
-      position: "is-top",
-    });
+    snackbar_2.value = false;
   } else if (startDate_ > endDate_) {
-    snackbar.value.open({
-      message: "開始日は必ず終了日より前に設定してください",
-      type: "is-warning",
-      position: "is-top",
-    });
+    snackbar_3.value = false;
   } else {
     UseUtils().download(startDate_, endDate_);
   }
+}
+
+function closeDialog1() {
+  snackbar_1.value = true;
+}
+
+function closeDialog2() {
+  snackbar_2.value = true;
+}
+
+function closeDialog3() {
+  snackbar_3.value = true;
 }
 </script>
