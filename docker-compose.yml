@@ -1,11 +1,10 @@
 version: "3.9"
 
 services:
-
   # Node.js
   nuxtjs:
     container_name: nuxtjs
-    build: ./docker/nodejs
+    image: node:20.9.0
     volumes:
       - .:/var/www/html
     ports:
@@ -14,6 +13,8 @@ services:
     # moduleを動的に入れ替えても大丈夫な環境変数
     environment:
       - CHOKIDAR_USEPOLLING=true
+    command: >
+      bash -c "npm install -g npm && npm install && npm run dev"
 
   # ﾜﾝﾁｬﾝRedis実装するかも？？？
 

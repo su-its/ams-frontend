@@ -4,7 +4,7 @@
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48">
-            <img src="noimage.png">
+            <img src="/noimage.png">
           </figure>
         </div>
         <div class="media-content">
@@ -20,15 +20,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    user: {
-      type: Object,
-      default () {
-        return {}
-      }
-    }
-  }
-}
+<script setup>
+defineProps({
+  user: { Object, default: {}}
+})
 </script>

@@ -25,3 +25,7 @@
   flex: 1;
 }
 
+@import "../node_modules/bulma/bulma.sass";
+
+// Import component
+@import "../node_modules/bulma-calendar/dist/css/bulma-calendar.css";

@@ -6,40 +6,41 @@
       </p>
     </div>
     <div class="card-content">
-      <b-tabs
-        v-model="activeTab"
-        type="is-toggle"
-        expanded
+      <div class="tabs is-boxed is-toggle">
+        <ul>
+          <li v-bind:class="{ 'is-active': isActive == 'default' }"><a v-on:click="isActive = 'default'"><font-awesome-icon icon="file-arrow-down" />3か月分</a>
+          </li>
+          <li v-bind:class="{ 'is-active': isActive == 'custom' }"><a v-on:click="isActive = 'custom'"><font-awesome-icon icon="download" />自分で設定する</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-contents">
+      <div
+        class="content"
+        v-bind:class="{ 'is-active': isActive == 'default'}"
       >
-        <b-tab-item
-          label="3か月分"
-          icon="file-download"
-        >
-          <DefaultCSV />
-        </b-tab-item>
-        <b-tab-item
-          label="自分で設定する"
-          icon="download-multiple"
-        >
-          <CustomCSV />
-        </b-tab-item>
-      </b-tabs>
+        <CSVDefaultCSV />
+      </div>
+      <div
+        class="content"
+        v-bind:class="{ 'is-active': isActive == 'custom'}"
+      >
+        <CSVCustomCSV />
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import DefaultCSV from '~/components/CSV/DefaultCSV'
-import CustomCSV from '~/components/CSV/CustomCSV'
-export default {
-  components: {
-    DefaultCSV,
-    CustomCSV
-  },
-  data () {
-    return {
-      activeTab: 0
-    }
-  }
-}
+<script setup>
+const isActive = ref("default");
 </script>
+
+<style scoped>
+.tab-contents .content {
+  display: none;
+}
+.tab-contents .content.is-active {
+  display: block;
+}
+</style>

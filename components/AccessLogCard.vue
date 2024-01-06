@@ -2,58 +2,33 @@
   <div>
     <div class="card-content">
       <div v-if="logData.length != 0">
-        <b-table
-          :data="logData"
-          :hoverable="true"
-          :mobile-cards="true"
-        >
-          <b-table-column
-            v-slot="props"
-            field="user_id"
-            label="学籍番号"
-            width="50"
-            numeric
-          >
-            {{ props.row.user_id }}
-          </b-table-column>
-          <b-table-column
-            v-slot="props"
-            field="entered_at"
-            label="入室時刻"
-            width="50"
-          >
-            {{ $moment(props.row.entered_at).format('YYYY-MM-DD HH:mm:ss') }}
-          </b-table-column>
-          <b-table-column
-            v-slot="props"
-            field="exited_at"
-            label="退室時刻"
-            width="50"
-          >
-            {{ $moment(props.row.exited_at).format('YYYY-MM-DD HH:mm:ss') }}
-          </b-table-column>
-        </b-table>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><abbr title="学籍番号">学籍番号</abbr></th>
+              <th><abbr title="入室時刻">入室時刻</abbr></th>
+              <th><abbr title="退室時刻">退室時刻</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="props in logData">
+              <td>{{ props.user_id }}</td>
+              <td>{{ moment(props.entered_at).format("YYYY-MM-DD HH:mm:ss") }}</td>
+              <td>{{ moment(props.exited_at).format("YYYY-MM-DD HH:mm:ss") }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div v-else>
-        <NoContent />
+        <CommonNoContent />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import NoContent from '~/components/Common/NoContent'
-export default {
-  components: {
-    NoContent
-  },
-  props: {
-    logData: {
-      type: Array,
-      default () {
-        return []
-      }
-    }
-  }
-}
+<script setup>
+import moment from "moment";
+defineProps({
+  logData: Array,
+});
 </script>

@@ -14,26 +14,15 @@
       </p>
       <div class="content">
         <div v-for="user in roomUser" :key="user.id">
-          <User :user="user" />
+          <UserInfo :user="user" />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import User from '~/components/UserInfo'
-export default {
-  components: {
-    User
-  },
-  props: {
-    roomUser: {
-      type: Array,
-      default () {
-        return []
-      }
-    }
-  }
-}
+<script setup>
+defineProps({
+  roomUser: { Array, default: [] }
+})
 </script>

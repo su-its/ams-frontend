@@ -1,109 +1,106 @@
 <template>
   <div>
-    <b-field grouped>
-      <b-field
-        label="集計開始日"
+    <div
+      class="notification is-danger is-light"
+      v-bind:hidden="snackbar_1"
+    >
+      <button class="delete" v-on:click="closeDialog1"></button>
+      開始日を設定してください
+    </div>
+    <div
+      class="notification is-danger is-light"
+      v-bind:hidden="snackbar_2"
+    >
+      <button class="delete" v-on:click="closeDialog2"></button>
+      終了日を設定してください
+    </div>
+    <div
+      class="notification is-danger is-light"
+      v-bind:hidden="snackbar_3"
+    >
+      <button class="delete" v-on:click="closeDialog3"></button>
+      開始日は必ず終了日より前に設定してください
+    </div>
+    <div
+      class="field"
+      grouped
+    >
+      <label
+        class="label"
         expanded
-      >
-        <b-datepicker
-          v-model="startDate"
-          locale="ja-JP"
-          placeholder="集計開始日を指定してください"
-          icon="calendar-today"
-          :append-to-body="true"
-          :min-date="minDate"
-          :max-date="maxDate"
-        >
-          <b-button
-            label="クリア"
-            type="is-danger"
-            icon-left="close"
-            outlined
-            @click="startDate = null"
-          />
-        </b-datepicker>
-      </b-field>
-      <b-field
-        label="集計終了日"
+      >集計開始日
+        <a ref="startDateTrigger" />
+      </label>
+      <label
+        class="label"
         expanded
-      >
-        <b-datepicker
-          v-model="endDate"
-          locale="ja-JP"
-          placeholder="集計終了日を指定してください"
-          icon="calendar-today"
-          :append-to-body="true"
-          :min-date="minDate"
-          :max-date="maxDate"
-          aria-expanded
-        >
-          <b-button
-            label="本日"
-            type="is-primary"
-            icon-left="calendar-today"
-            @click="endDate=new Date()"
-          />
-
-          <b-button
-            label="クリア"
-            type="is-danger"
-            icon-left="close"
-            outlined
-            @click="endDate = null"
-          />
-        </b-datepicker>
-      </b-field>
-    </b-field>
+      >集計終了日
+        <a ref="endDateTrigger" />
+      </label>
+    </div>
     <br>
-    <b-button
-      size="is-medium"
-      icon-left="file-download"
-      label="ダウンロード"
-      type="is-info"
+    <button
+      class="button is-medium is-info"
       @click="getCSV()"
-    />
+    ><font-awesome-icon icon="file-arrow-down" />ダウンロード</button>
   </div>
 </template>
 
-<script>
-import common from '~/plugins/common'
-export default {
-  mixins: [common],
-  data () {
-    return {
-      startDate: null,
-      endDate: null,
-      // CSVのファイル名が年2桁なのでambiguousにならないようにしておく
-      minDate: new Date('2000-01-01'),
-      maxDate: new Date('2099-12-31')
-    }
-  },
-  methods: {
-    getCSV () {
-      const startDate = this.$moment(this.startDate)
-      const endDate = this.$moment(this.endDate)
-      if (!startDate.isValid()) {
-        this.$buefy.snackbar.open({
-          message: '開始日を設定してください',
-          type: 'is-warning',
-          position: 'is-top'
-        })
-      } else if (!endDate.isValid()) {
-        this.$buefy.snackbar.open({
-          message: '終了日を設定してください',
-          type: 'is-warning',
-          position: 'is-top'
-        })
-      } else if (startDate > endDate) {
-        this.$buefy.snackbar.open({
-          message: '開始日は必ず終了日より前に設定してください',
-          type: 'is-warning',
-          position: 'is-top'
-        })
-      } else {
-        this.download(startDate, endDate)
-      }
-    }
+<script setup>
+import bulmaCalendar from "bulma-calendar";
+import moment from "moment";
+
+const startDate = ref(new Date());
+const endDate = ref(new Date());
+const snackbar_1 = ref(true);
+const snackbar_2 = ref(true);
+const snackbar_3 = ref(true);
+const startDateTrigger = ref(false);
+const endDateTrigger = ref(false);
+// CSVのファイル名が年2桁なのでambiguousにならないようにしておく
+
+onMounted(() => {
+  const startCalender = bulmaCalendar.attach(startDateTrigger.value, {
+    startDate: startDate.value,
+    minDate: new Date("2000-01-01"),
+    maxDate: new Date("2099-12-31"),
+    lang: "ja",
+    type: "date",
+  })[0];
+  startCalender.on("select", (e) => (startDate.value = e.data.startDate || null));
+  const endCalender = bulmaCalendar.attach(endDateTrigger.value, {
+    startDate: new Date(),
+    minDate: new Date("2000-01-01"),
+    maxDate: new Date("2099-12-31"),
+    lang: "ja",
+    type: "date",
+  })[0];
+  endCalender.on("select", (e) => (endDate.value = e.data.startDate || null));
+});
+
+function getCSV() {
+  const startDate_ = moment(startDate.value);
+  const endDate_ = moment(endDate.value);
+  if (!startDate_.isValid()) {
+    snackbar_1.value = false;
+  } else if (!endDate_.isValid()) {
+    snackbar_2.value = false;
+  } else if (startDate_ > endDate_) {
+    snackbar_3.value = false;
+  } else {
+    UseUtils().download(startDate_, endDate_);
   }
+}
+
+function closeDialog1() {
+  snackbar_1.value = true;
+}
+
+function closeDialog2() {
+  snackbar_2.value = true;
+}
+
+function closeDialog3() {
+  snackbar_3.value = true;
 }
 </script>
