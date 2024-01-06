@@ -1,6 +1,7 @@
 name: Review eslint
 on:
   pull_request:
+    types: [opened, reopened]
 
 jobs:
   eslint:

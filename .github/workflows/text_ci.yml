@@ -3,6 +3,7 @@ name: Text_CI
 # mainとdevは直接pushが出来ないので、onトリガーとして記載していません
 on:
   pull_request:
+    types: [opened, reopened]
 
 jobs:
   # 参考URL https://github.com/tsuyoshicho/action-redpen
