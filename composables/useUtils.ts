@@ -4,8 +4,8 @@ export function UseUtils() {
   /**
    * バックエンドから指定期間の入退室ログを取得し
    * CSVファイルに変換してダウンロードする
-   * @param {moment=} startDate 取得期間の始まり
-   * @param {moment=} endDate 取得期間の終わり
+   * @param startDate 取得期間の始まり
+   * @param endDate 取得期間の終わり
    */
   function download(
     startDate: { format: (arg0: string) => string },
@@ -42,10 +42,12 @@ export function UseUtils() {
   return { download };
 }
 
-/* 入退室ログのオブジェクトからCSVを生成し
+/**
+ * 入退室ログのオブジェクトからCSVを生成し
  * ダウンロードさせる
- * @param {object} obj 入退室ログオブジェクト
+ * @param obj 入退室ログオブジェクト
  * @example: { 'meta': {...}, data: [...] }
+ * @returns void
  */
 function _generateAndDownloadCSV(obj: {
   data: Readonly<unknown> | readonly unknown[];
