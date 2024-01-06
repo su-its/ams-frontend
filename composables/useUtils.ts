@@ -27,7 +27,7 @@ export function UseUtils() {
     $fetch(useRuntimeConfig().public.BaseURL + "/access_logs/bulk" + queryStr)
       .then((resp: any) => {
         try {
-          _generateAndDownloadCSV(resp);
+          _generateAndDownloadCSV({ obj: resp });
           // $buefy.snackbar.open('ダウンロードしました。')
         } catch (err: any) {
           console.debug(err);
@@ -49,19 +49,23 @@ export function UseUtils() {
  * @example: { 'meta': {...}, data: [...] }
  * @returns void
  */
-function _generateAndDownloadCSV(obj: {
-  data: Readonly<unknown> | readonly unknown[];
-  meta: { since: moment.MomentInput; until: moment.MomentInput };
+function _generateAndDownloadCSV({
+  obj,
+}: {
+  obj: {
+    data: Readonly<unknown> | readonly unknown[];
+    meta: { since: moment.MomentInput; until: moment.MomentInput };
+  };
 }): void {
   interface Log {
-    user_id: string;
+    user_id: number;
     entered_at: string;
     exited_at: string;
   }
 
   const isValidStructure = (data: any): data is Log => {
     return (
-      typeof data.user_id === "string" &&
+      typeof data.user_id === "number" &&
       typeof data.entered_at === "string" &&
       typeof data.exited_at === "string"
     );
@@ -83,9 +87,17 @@ function _generateAndDownloadCSV(obj: {
       },
     ],
   });
-  //TODO: この部分データがあるとエラります。obj.dataはarrayです
-  if (!isValidStructure(obj.data)) {
-    throw Error("error parsing csv");
+  if (Array.isArray(obj.data)) {
+    obj.data.forEach((data) => {
+      console.log(data)
+      if (!isValidStructure(data)) {
+        throw Error("error parsing csv");
+      }
+    });
+  } else {
+    if (!isValidStructure(obj.data)) {
+      throw Error("error parsing csv");
+    }
   }
 
   const csv = parser.parse(obj.data);
