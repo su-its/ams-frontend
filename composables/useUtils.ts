@@ -43,13 +43,30 @@ export function UseUtils() {
 }
 
 /* 入退室ログのオブジェクトからCSVを生成し
-   * ダウンロードさせる
-   * @param {object} obj 入退室ログオブジェクト
-   * @example: { 'meta': {...}, data: [...] }
-   */
-function _generateAndDownloadCSV(obj: { data: Readonly<unknown> | readonly unknown[]; meta: { since: moment.MomentInput; until: moment.MomentInput; }; }) {
+ * ダウンロードさせる
+ * @param {object} obj 入退室ログオブジェクト
+ * @example: { 'meta': {...}, data: [...] }
+ */
+function _generateAndDownloadCSV(obj: {
+  data: Readonly<unknown> | readonly unknown[];
+  meta: { since: moment.MomentInput; until: moment.MomentInput };
+}): void {
+  interface Log {
+    user_id: string;
+    entered_at: string;
+    exited_at: string;
+  }
+
+  const isValidStructure = (data: any): data is Log => {
+    return (
+      typeof data.user_id === "string" &&
+      typeof data.entered_at === "string" &&
+      typeof data.exited_at === "string"
+    );
+  };
+
   /* オブジェクトからCSVを構築 */
-  const parser = new Parser({
+  const parser = new Parser<Readonly<Log>, object>({
     fields: ["user_id", "entered_at", "exited_at"],
     eol: "\r\n", // 行末はDOS
     withBOM: true, // BOM付き
@@ -58,22 +75,26 @@ function _generateAndDownloadCSV(obj: { data: Readonly<unknown> | readonly unkno
         // Excelで読めるように時刻をフォーマットする
         return {
           user_id: item.user_id,
-          entered_at: moment(item.entered_at).format('YYYY-MM-DD HH:mm:ss'),
-          exited_at: moment(item.exited_at).format('YYYY-MM-DD HH:mm:ss')
+          entered_at: moment(item.entered_at).format("YYYY-MM-DD HH:mm:ss"),
+          exited_at: moment(item.exited_at).format("YYYY-MM-DD HH:mm:ss"),
         };
       },
     ],
   });
+  if (!isValidStructure(obj.data)) {
+    throw Error("error parsing csv");
+  }
+
   const csv = parser.parse(obj.data);
 
   /* CSVのファイル名生成 */
-  const sinceStr = moment(obj.meta.since).format('YYMMDD')
-  const untilStr = moment(obj.meta.until).format('YYMMDD')
-  const filename = sinceStr + '_' + untilStr + '.csv'
+  const sinceStr = moment(obj.meta.since).format("YYMMDD");
+  const untilStr = moment(obj.meta.until).format("YYMMDD");
+  const filename = sinceStr + "_" + untilStr + ".csv";
 
   /* CSVダウンロード処理 */
   const a = window.document.createElement("a");
   a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-  a.download = filename
+  a.download = filename;
   a.click();
 }
