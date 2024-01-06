@@ -1,10 +1,7 @@
 name: Review eslint
 on:
   pull_request:
-    branches:
-      - main
-      - develop
-      - its
+
 jobs:
   eslint:
     name: eslint
