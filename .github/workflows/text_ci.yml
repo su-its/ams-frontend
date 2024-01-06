@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - develop
+      - its
 
 jobs:
   # 参考URL https://github.com/tsuyoshicho/action-redpen
@@ -69,6 +70,6 @@ jobs:
           fail_on_error: true # PRにerrorを表示させるフラグ
           textlint_flags: "./**" # 全てのファイルを指定したが、.textlintrcのpluginに指定されたモノのみ検査される
 
-  
+
   # Reviewというpluginについて
   # 参考URL https://gihyo.jp/admin/serial/01/ubuntu-recipe/0548
