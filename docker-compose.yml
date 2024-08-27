@@ -5,16 +5,16 @@ services:
   nuxtjs:
     container_name: nuxtjs
     image: node:20.9.0
+    working_dir: /var/www/html
     volumes:
       - .:/var/www/html
     ports:
       - 3001:3001
-
     # moduleを動的に入れ替えても大丈夫な環境変数
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: >
-      bash -c "npm install -g npm && npm install && npm run dev"
+      bash -c "npm install i -g npm && npm install && npm run dev"
 
   # ﾜﾝﾁｬﾝRedis実装するかも？？？
 
