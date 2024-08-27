@@ -67,7 +67,10 @@ onMounted(() => {
     lang: "ja",
     type: "date",
   })[0];
-  startCalender.on("select", (e) => (startDate.value = e.data.startDate || null));
+  startCalender.on(
+    "select",
+    (e) => (startDate.value = e.data.startDate || null),
+  );
   const endCalender = bulmaCalendar.attach(endDateTrigger.value, {
     startDate: new Date(),
     minDate: new Date("2000-01-01"),

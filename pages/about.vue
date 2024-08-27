@@ -44,12 +44,12 @@
 </template>
 
 <script setup>
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
 useHead({
   title: "このシステムについて",
 });
 const BACKEND_VERSION = await $fetch(config.public.BaseURL).then(
-  (Response) => Response.version
+  (Response) => Response.version,
 );
 const PKG_VERSION = config.public.PKG_VERSION;
 </script>

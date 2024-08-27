@@ -23,6 +23,6 @@
 
 <script setup>
 defineProps({
-  roomUser: { Array, default: [] }
-})
+  roomUser: { Array, default: [] },
+});
 </script>

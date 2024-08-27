@@ -18,8 +18,10 @@
 //   store.dispatch('logging/getInRoomUsers')
 //   store.dispatch('logging/setUpSSE')
 // },
-const room_user = ref([])
-room_user.value = await $fetch(useRuntimeConfig().public.BaseURL +'/users_in_room').then((Response) => Response.data)
+const room_user = ref([]);
+room_user.value = await $fetch(
+  useRuntimeConfig().public.BaseURL + "/users_in_room",
+).then((Response) => Response.data);
 useHead({
   title: "ITS-AMS コントロールパネル",
   titleTemplate: "",

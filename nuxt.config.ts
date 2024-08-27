@@ -6,20 +6,25 @@ export default defineNuxtConfig({
     strict: true,
     typeCheck: true,
   },
+
   experimental: {
     payloadExtraction: true,
   },
+
   devtools: { enabled: false },
+
   devServer: {
     port:
       typeof process.env.APP_PORT === "number" ? process.env.APP_PORT : 3001,
   },
+
   runtimeConfig: {
     public: {
       PKG_VERSION: packageJson.version || "バージョン情報の取得に失敗しました",
       BaseURL: process.env.API_URL || "",
     },
   },
+
   // server: {
   //   // ポート番号を指定
   //   port: process.env.APP_PORT,
@@ -62,6 +67,7 @@ export default defineNuxtConfig({
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
+
   // データの入出力を全てJSONで行うように設定
   // headers: {
   //   "Content-Type": "application/json",
@@ -105,10 +111,11 @@ export default defineNuxtConfig({
   //   parallel: true,
   // },
 
-  telemetry: false,
-
   // render: {
   //   // SSEと圧縮の相性が悪いのでオフにしておく
   //   compressor: false,
   // },
+  telemetry: false,
+
+  compatibilityDate: "2024-08-26",
 });

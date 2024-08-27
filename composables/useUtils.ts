@@ -9,7 +9,7 @@ export function UseUtils() {
    */
   function download(
     startDate: { format: (arg0: string) => string },
-    endDate: { format: (arg0: string) => string }
+    endDate: { format: (arg0: string) => string },
   ) {
     /* クエリを構築 */
     const queries = [];
@@ -89,7 +89,7 @@ function _generateAndDownloadCSV({
   });
   if (Array.isArray(obj.data)) {
     obj.data.forEach((data) => {
-      console.log(data)
+      console.log(data);
       if (!isValidStructure(data)) {
         throw Error("error parsing csv");
       }

@@ -108,7 +108,7 @@ log_data.value = await $fetch(
     "?page=" +
     page.value +
     "&per_page=" +
-    perPage.value
+    perPage.value,
 ).then((Response) => Response.data);
 log_meta.value = await $fetch(
   useRuntimeConfig().public.BaseURL +
@@ -116,7 +116,7 @@ log_meta.value = await $fetch(
     "?page=" +
     page.value +
     "&per_page=" +
-    perPage.value
+    perPage.value,
 ).then((Response) => Response.meta);
 // computed: {
 //   ...mapGetters({
@@ -137,7 +137,7 @@ async function changePerPagePagination(perPage_) {
       "?page=" +
       page.value +
       "&per_page=" +
-      perPage_
+      perPage_,
   ).then((Response) => Response.data);
   log_meta.value = await $fetch(
     useRuntimeConfig().public.BaseURL +
@@ -145,7 +145,7 @@ async function changePerPagePagination(perPage_) {
       "?page=" +
       page.value +
       "&per_page=" +
-      perPage_
+      perPage_,
   ).then((Response) => Response.meta);
 
   // ページネーションも1ページ目に戻す
@@ -166,7 +166,7 @@ async function pagination(current_page_) {
       "?page=" +
       page.value +
       "&per_page=" +
-      perPage.value
+      perPage.value,
   ).then((Response) => Response.data);
   log_meta.value = await $fetch(
     useRuntimeConfig().public.BaseURL +
@@ -174,7 +174,7 @@ async function pagination(current_page_) {
       "?page=" +
       page.value +
       "&per_page=" +
-      perPage.value
+      perPage.value,
   ).then((Response) => Response.meta);
 }
 </script>

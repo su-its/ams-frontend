@@ -22,6 +22,6 @@
 
 <script setup>
 defineProps({
-  user: { Object, default: {}}
-})
+  user: { Object, default: {} },
+});
 </script>
